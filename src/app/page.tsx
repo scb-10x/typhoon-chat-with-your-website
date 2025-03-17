@@ -475,7 +475,7 @@ export default function Home() {
           disabled={isLoading}
         />
         
-        <div className="mt-4">
+        <div className="pt-4">
           <AnimatePresence>
             {showProgress && (
               <ProgressBar
