@@ -475,17 +475,19 @@ export default function Home() {
           disabled={isLoading}
         />
         
-        <AnimatePresence>
-          {showProgress && (
-            <ProgressBar
-              isVisible={showProgress}
-              progress={progressValue}
-              total={progressTotal}
-              completed={progressCompleted}
-              status={progressStatus}
-            />
-          )}
-        </AnimatePresence>
+        <div className="mt-4">
+          <AnimatePresence>
+            {showProgress && (
+              <ProgressBar
+                isVisible={showProgress}
+                progress={progressValue}
+                total={progressTotal}
+                completed={progressCompleted}
+                status={progressStatus}
+              />
+            )}
+          </AnimatePresence>
+        </div>
         
         {/* Show either the complete website data or partial data */}
         {(websiteData || partialData) && (
