@@ -9,19 +9,32 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ai-sdk/openai": "^1.2.5",
+    "@heroicons/react": "^2.2.0",
+    "@langchain/openai": "^0.4.4",
+    "@types/react-syntax-highlighter": "^15.5.13",
+    "ai": "^4.1.61",
+    "axios": "^1.8.3",
+    "cheerio": "^1.0.0",
+    "framer-motion": "^12.5.0",
+    "langchain": "^0.3.19",
+    "next": "15.2.2",
+    "openai": "^4.87.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "next": "15.2.2"
+    "react-hot-toast": "^2.5.2",
+    "react-markdown": "^10.1.0",
+    "react-syntax-highlighter": "^15.6.1"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@tailwindcss/postcss": "^4",
-    "tailwindcss": "^4",
     "eslint": "^9",
     "eslint-config-next": "15.2.2",
-    "@eslint/eslintrc": "^3"
+    "tailwindcss": "^4",
+    "typescript": "^5"
   }
 }

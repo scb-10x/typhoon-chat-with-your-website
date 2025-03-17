@@ -1,36 +1,103 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Chat With Your Website
+
+A modern web application that allows users to input a website URL, crawl the entire site, summarize its content using AI, and chat with the crawled website data.
+
+## Features
+
+- **Full Website Crawling**: Crawl entire websites and extract content from multiple pages.
+- **Real-time Progress Updates**: Get live updates during the crawling process.
+- **Website Analysis**: Get an AI-generated summary of the website content.
+- **Interactive Chat**: Ask questions about the website content and get AI-powered responses.
+- **Modern UI**: Beautiful and responsive user interface with animations.
+- **Real-time Feedback**: Toast notifications for success and error messages.
+- **Advanced Web Crawling**: Uses Firecrawl's API for high-quality content extraction from entire websites.
+
+## Technologies Used
+
+- **Next.js**: React framework for building the application
+- **TypeScript**: For type-safe code
+- **Tailwind CSS**: For styling
+- **Framer Motion**: For animations
+- **Axios**: For HTTP requests
+- **Server-Sent Events**: For real-time progress updates
+- **Firecrawl API**: For advanced web crawling and content extraction
+- **LangChain**: For LLM integration
+- **OpenAI**: For AI-powered summarization and chat
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Node.js 18.x or later
+- npm or yarn
+- OpenAI API key
+- Firecrawl API key
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Installation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/chat-with-your-website.git
+   cd chat-with-your-website
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2. Install dependencies:
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
 
-## Learn More
+3. Create a `.env.local` file in the root directory and add your API keys:
+   ```
+   OPENAI_API_KEY=your_openai_api_key_here
+   FIRECRAWL_API_KEY=your_firecrawl_api_key_here
+   MAX_CRAWL_PAGES=10  # Optional: Limit the number of pages to crawl (default: 10)
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+4. Start the development server:
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+5. Open [http://localhost:3000](http://localhost:3000) in your browser to see the application.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Usage
 
-## Deploy on Vercel
+1. Enter a website URL in the input field (including http:// or https://).
+2. Click "Crawl & Analyze Website" to start the crawling process.
+3. Watch the real-time progress updates as the website is crawled.
+4. Once the website is crawled and analyzed, you can see the summary and start chatting with the website content.
+5. Ask questions about the website content in the chat interface.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## How It Works
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. **Website Crawling**: When you enter a URL, Firecrawl API crawls the entire website, following links and extracting content from multiple pages.
+2. **Asynchronous Processing**: The crawling process happens asynchronously, with real-time progress updates sent to the UI.
+3. **Content Extraction**: The content is extracted in Markdown format for clean, structured data.
+4. **AI Summarization**: OpenAI processes the extracted content to generate a comprehensive summary.
+5. **Interactive Chat**: You can ask questions about the website, and the AI will respond based on the crawled content.
+
+## Deployment
+
+This application can be easily deployed to Vercel:
+
+1. Push your code to a GitHub repository.
+2. Import the project in Vercel.
+3. Add your environment variables (OPENAI_API_KEY, FIRECRAWL_API_KEY, and optionally MAX_CRAWL_PAGES) in the Vercel dashboard.
+4. Deploy!
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Acknowledgements
+
+- [Next.js](https://nextjs.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [OpenAI](https://openai.com/)
+- [Firecrawl](https://firecrawl.dev/)
+- [LangChain](https://js.langchain.com/)
+- [Framer Motion](https://www.framer.com/motion/)
