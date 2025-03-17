@@ -204,7 +204,7 @@ export async function chatWithWebsite(
     const { text } = await generateText({
       model: typhoon(model),
       messages: formattedMessages,
-      maxTokens: 512,
+      maxTokens: 2000,
       temperature: 0.7,
     });
     
