@@ -51,7 +51,7 @@ export async function GET(request: NextRequest) {
 
     // Fetch the current state of the crawl
     const response = await axios.get<FirecrawlResultResponse>(
-      `https://api.firecrawl.dev/v1/crawl/${crawlId}`,
+      `${process.env.BASE_FIRECRAWL_URL}/crawl/${crawlId}`,
       {
         headers: {
           'Authorization': `Bearer ${firecrawlApiKey}`,

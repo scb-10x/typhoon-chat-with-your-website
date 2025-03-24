@@ -16,18 +16,27 @@ interface WebsiteData {
   url: string;
   title: string;
   summary: string;
-  content: string;
-  notice?: string;
-  sources?: string[];
+  pages: {
+    url: string;
+    title: string;
+    content: string;
+    description?: string;
+  }[];
+  totalPages: number;
 }
 
 interface PartialWebsiteData {
   url: string;
   title: string;
-  content: string;
+  pages: {
+    url: string;
+    title: string;
+    content: string;
+    description?: string;
+  }[];
   completed: number;
   total: number;
-  sources?: string[];
+  totalPages: number;
   summary?: string;
 }
 
@@ -194,14 +203,14 @@ export default function Home() {
         return;
       }
       
-      if (data.content && data.title) {
+      if (data.pages && data.title) {
         setPartialData({
           url,
           title: data.title,
-          content: data.content,
+          pages: data.pages,
           completed: data.completed,
           total: data.total,
-          sources: data.sources || [],
+          totalPages: data.totalPages,
           summary: data.summary
         });
         
@@ -234,7 +243,6 @@ export default function Home() {
     try {
       // Process the input to handle multiple URLs
       const urls = urlInput.split(',').map(url => url.trim()).filter(url => url.length > 0);
-      const isSingleUrl = urls.length === 1;
       
       // Show progress bar with initial state
       updateProgress(`Initiating crawl for ${urls[0]}...`);
@@ -250,8 +258,7 @@ export default function Home() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ 
-          url: isSingleUrl ? urls[0] : null,
-          urls: !isSingleUrl ? urls : null,
+          url: urls[0],
           language: selectedLanguage,
           model: selectedModel
         }),
@@ -276,18 +283,19 @@ export default function Home() {
       }
 
       const data = await response.json();
+      
+      // Update the website data with the new structure
       setWebsiteData({
         url: data.url,
         title: data.title,
         summary: data.summary,
-        content: data.content,
-        sources: data.sources || [],
-        notice: data.notice
+        pages: data.pages,
+        totalPages: data.totalPages
       });
       setPartialData(null); // Clear partial data once we have the full data
       
       // Show success message
-      toast.success('Website crawled and analyzed successfully!');
+      toast.success('Website analyzed successfully!');
       
       // If there's a notice, show it as an informational toast
       if (data.notice) {
@@ -330,44 +338,29 @@ export default function Home() {
   };
 
   const handleSendMessage = async (messages: Message[]): Promise<string> => {
-    // If we have partial data and the crawl is not complete, inform the user
-    if (partialData && !isCrawlComplete && !websiteData) {
-      return "I'm still crawling the website. My answers are based on partial data and may be incomplete. Please wait for the full crawl to complete for more accurate responses.";
-    }
-    
-    // Use either the complete website data or the partial data
-    const dataToUse = websiteData || (partialData ? {
-      url: partialData.url,
-      title: partialData.title,
-      content: partialData.content
-    } : null);
-    
-    if (!dataToUse) {
+    if (!websiteData && !partialData) {
       return 'Please analyze a website first.';
     }
-    
-    // Get the last user message from the messages array
-    const lastUserMessage = messages.filter(msg => msg.sender === 'user').pop();
-    
-    if (!lastUserMessage) {
-      return 'No message to process.';
-    }
-    
+
     try {
+      const data = websiteData || partialData;
+      if (!data) return 'No website data available.';
+
       const response = await fetch('/api/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          messages: messages,
-          lastMessage: lastUserMessage.content,
+          messages,
+          lastMessage: messages[messages.length - 1].content,
           websiteData: {
-            url: dataToUse.url,
-            title: dataToUse.title,
-            content: dataToUse.content,
+            url: data.url,
+            title: data.title,
+            pages: data.pages,
+            totalPages: data.totalPages || data.pages.length
           },
-          language: language,
+          language,
           model: selectedModel
         }),
       });
@@ -377,31 +370,26 @@ export default function Home() {
         throw new Error(errorData.error || 'Failed to process message');
       }
 
-      const data = await response.json();
-      return data.response;
+      const { response: aiResponse } = await response.json();
+      return aiResponse;
     } catch (error) {
       console.error('Error sending message:', error);
-      return `Error: ${(error as Error).message}`;
+      throw error;
     }
   };
 
   // Function to re-summarize the website content without re-crawling
   const handleReSummarize = async () => {
     if (!websiteData && !partialData) {
-      toast.error('No website data available to re-summarize');
+      toast.error('No website data available to summarize.');
       return;
     }
 
-    // Use either the complete website data or the partial data
-    const dataToUse = websiteData || partialData;
-    if (!dataToUse) return;
-
-    setIsLoading(true);
-    
     try {
-      // Show progress bar with initial state
-      updateProgress('Re-summarizing website content...');
-      
+      const data = websiteData || partialData;
+      if (!data) return;
+      setIsLoading(true)
+
       const response = await fetch('/api/summarize', {
         method: 'POST',
         headers: {
@@ -409,53 +397,41 @@ export default function Home() {
         },
         body: JSON.stringify({
           websiteData: {
-            url: dataToUse.url,
-            title: dataToUse.title,
-            content: dataToUse.content,
+            url: data.url,
+            title: data.title,
+            pages: data.pages,
+            totalPages: data.totalPages || data.pages.length
           },
-          language: language,
+          language,
           model: selectedModel
         }),
       });
 
-      // Hide progress bar
-      setShowProgress(false);
-
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(errorData.error || 'Failed to re-summarize website');
+        throw new Error(errorData.error || 'Failed to generate summary');
       }
 
-      const data = await response.json();
+      const { summary } = await response.json();
       
       // Update the website data with the new summary
       if (websiteData) {
         setWebsiteData({
           ...websiteData,
-          summary: data.summary
+          summary
         });
       } else if (partialData) {
-        // If we only have partial data, update that
         setPartialData({
           ...partialData,
-          // Add the summary property to the partial data
-          completed: partialData.completed,
-          total: partialData.total,
-          url: partialData.url,
-          title: partialData.title,
-          content: partialData.content,
-          sources: partialData.sources,
-          summary: data.summary
+          summary
         });
       }
-      
-      // Show success message
-      toast.success('Website content re-summarized successfully!');
+      setIsLoading(false)
+
+      toast.success('Summary regenerated successfully!');
     } catch (error) {
-      console.error('Error re-summarizing website:', error);
+      console.error('Error regenerating summary:', error);
       toast.error(`Error: ${(error as Error).message}`);
-    } finally {
-      setIsLoading(false);
     }
   };
 
@@ -498,7 +474,7 @@ export default function Home() {
             isVisible={!!(websiteData || partialData)}
             isPartial={!websiteData && !!partialData}
             language={language}
-            sources={websiteData?.sources || partialData?.sources || []}
+            sources={websiteData?.pages.map(page => page.url) || partialData?.pages.map(page => page.url) || []}
             onReSummarize={handleReSummarize}
             isLoading={isLoading}
           />

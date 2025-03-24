@@ -36,7 +36,7 @@ export async function GET(request: NextRequest) {
 
     // Fetch the progress directly from Firecrawl API
     const response = await axios.get(
-      `https://api.firecrawl.dev/v1/crawl/${crawlId}`,
+      `${process.env.BASE_FIRECRAWL_URL}/crawl/${crawlId}`,
       {
         headers: {
           Authorization: `Bearer ${firecrawlApiKey}`,

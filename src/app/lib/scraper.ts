@@ -2,11 +2,18 @@ import axios from 'axios';
 
 export const crawlIdMap: Record<string, string> = {};
 
-export interface ScrapedData {
+export interface PageData {
   url: string;
   title: string;
   content: string;
-  sources?: string[];
+  description?: string;
+}
+
+export interface ScrapedData {
+  pages: PageData[];
+  mainUrl: string;
+  mainTitle: string;
+  totalPages: number;
 }
 
 interface FirecrawlMetadata {
@@ -43,9 +50,10 @@ interface FirecrawlResultResponse {
 /**
  * Scrapes a website using Firecrawl's API and extracts its content
  * @param url The URL of the website to scrape
+ * @param pageLimit The maximum number of pages to crawl
  * @returns The scraped data including title, content, and sources
  */
-export async function scrapeWebsite(url: string): Promise<ScrapedData> {
+export async function scrapeWebsite(url: string, pageLimit: number = 10): Promise<ScrapedData> {
   try {
     // Get the Firecrawl API key from environment variables
     const firecrawlApiKey = process.env.FIRECRAWL_API_KEY;
@@ -54,24 +62,15 @@ export async function scrapeWebsite(url: string): Promise<ScrapedData> {
       throw new Error('FIRECRAWL_API_KEY is not defined in environment variables');
     }
 
-    // Get the maximum number of pages to crawl from environment variables
-    // Default to 10 if not specified
-    const maxCrawlPages = process.env.MAX_CRAWL_PAGES 
-      ? parseInt(process.env.MAX_CRAWL_PAGES, 10) 
-      : 10;
-    
-    // Ensure the value is valid
-    const pageLimit = isNaN(maxCrawlPages) || maxCrawlPages <= 0 ? 10 : maxCrawlPages;
-    
     console.log(`Crawl page limit set to: ${pageLimit} pages`);
 
     // Step 1: Initiate the crawl
     console.log(`Initiating crawl for ${url}...`);
     const initResponse = await axios.post<FirecrawlInitResponse>(
-      'https://api.firecrawl.dev/v1/crawl',
+      `${process.env.BASE_FIRECRAWL_URL}/crawl`,
       {
         url: url,
-        limit: pageLimit, // Use the environment variable with default
+        limit: pageLimit,
         scrapeOptions: {
           formats: ["markdown"]
         }
@@ -114,7 +113,7 @@ export async function scrapeWebsite(url: string): Promise<ScrapedData> {
       
       try {
         const response = await axios.get<FirecrawlResultResponse>(
-          `https://api.firecrawl.dev/v1/crawl/${crawlId}`,
+          `${process.env.BASE_FIRECRAWL_URL}/crawl/${crawlId}`,
           {
             headers: {
               'Authorization': `Bearer ${firecrawlApiKey}`,
@@ -211,7 +210,6 @@ export async function scrapeWebsite(url: string): Promise<ScrapedData> {
     // Add information about crawl statistics
     combinedContent += `\n\n--- Crawl Statistics ---\n`;
     combinedContent += `Total pages crawled: ${resultResponse.completed} of ${resultResponse.total}\n`;
-    combinedContent += `Credits used: ${resultResponse.creditsUsed}\n`;
     
     // If there's a next page, mention it
     if (resultResponse.next) {
@@ -220,10 +218,15 @@ export async function scrapeWebsite(url: string): Promise<ScrapedData> {
 
     // Return the scraped data
     return {
-      url,
-      title: mainTitle,
-      content: combinedContent,
-      sources: Array.from(sources) // Include the sources in the response
+      pages: resultResponse.data.map((page) => ({
+        url: page.metadata.sourceURL,
+        title: page.metadata.title,
+        content: page.markdown || '',
+        description: page.metadata.description
+      })),
+      mainUrl: url,
+      mainTitle: mainTitle,
+      totalPages: resultResponse.total
     };
   } catch (error) {
     console.error('Error scraping website with Firecrawl:', error);

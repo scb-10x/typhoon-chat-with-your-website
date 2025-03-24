@@ -7,18 +7,19 @@ export async function POST(request: NextRequest) {
   try {
     const { websiteData, language = 'en', model = 'typhoon-v2-70b-instruct' } = await request.json();
 
-    if (!websiteData || !websiteData.url || !websiteData.content) {
+    if (!websiteData || !websiteData.url || !websiteData.pages) {
       return NextResponse.json(
         { error: 'Website data is required' },
         { status: 400 }
       );
     }
 
-    // Prepare the data for summarization
+    // Prepare the scraped data
     const scrapedData: ScrapedData = {
-      url: websiteData.url,
-      title: websiteData.title || 'Untitled Page',
-      content: websiteData.content,
+      mainUrl: websiteData.url,
+      mainTitle: websiteData.title || 'Untitled Website',
+      pages: websiteData.pages,
+      totalPages: websiteData.totalPages || websiteData.pages.length
     };
     
     // Generate a summary using the LLM in the specified language and model

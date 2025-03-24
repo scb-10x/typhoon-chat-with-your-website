@@ -25,6 +25,16 @@ const UrlInput: React.FC<UrlInputProps> = ({ onSubmit, isLoading }) => {
     }
   };
 
+  const isRootLevelUrl = (url: string) => {
+    try {
+      const urlObj = new URL(url);
+      // Check if the pathname is empty or just '/'
+      return !urlObj.pathname || urlObj.pathname === '/';
+    } catch {
+      return false;
+    }
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -33,7 +43,6 @@ const UrlInput: React.FC<UrlInputProps> = ({ onSubmit, isLoading }) => {
       return;
     }
 
-    // With Firecrawl, we only support a single URL
     if (!validateUrl(url)) {
       setError(t('urlInput.error.invalid'));
       return;
@@ -95,7 +104,15 @@ const UrlInput: React.FC<UrlInputProps> = ({ onSubmit, isLoading }) => {
               <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 mr-1 mt-0.5 sm:mt-0 text-indigo-400 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
                 <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
               </svg>
-              <span>{t('urlInput.info')}</span>
+              <span>
+                {language === 'th' 
+                  ? isRootLevelUrl(url)
+                    ? 'สำหรับ URL ระดับบนสุด (เช่น example.com) จะวิเคราะห์ได้สูงสุด 10 หน้า'
+                    : 'สำหรับ URL ระดับย่อย (เช่น example.com/page) จะวิเคราะห์เฉพาะหน้าที่ระบุเท่านั้น'
+                  : isRootLevelUrl(url)
+                    ? 'For root-level URLs (e.g., example.com), up to 10 pages will be analyzed'
+                    : 'For subpath URLs (e.g., example.com/page), only the specified page will be analyzed'}
+              </span>
             </p>
             {error && (
               <motion.p 

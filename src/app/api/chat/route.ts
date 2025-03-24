@@ -22,20 +22,19 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    if (!websiteData || !websiteData.url || !websiteData.content) {
+    if (!websiteData || !websiteData.url || !websiteData.pages) {
       return NextResponse.json(
         { error: 'Website data is required' },
         { status: 400 }
       );
     }
 
-    // In a production app, you would retrieve the website data from a database or session
-    // based on a session ID or website ID rather than passing it in the request
-    
+    // Prepare the scraped data
     const scrapedData: ScrapedData = {
-      url: websiteData.url,
-      title: websiteData.title || 'Untitled Page',
-      content: websiteData.content,
+      mainUrl: websiteData.url,
+      mainTitle: websiteData.title || 'Untitled Website',
+      pages: websiteData.pages,
+      totalPages: websiteData.totalPages || websiteData.pages.length
     };
     
     // Generate a response using the LLM in the specified language and model with message history

@@ -1,7 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { MODEL_PARAMETERS } from '../lib/const';
 
-export type TyphoonModel = 'typhoon-v2-70b-instruct' | 'typhoon-v2-8b-instruct' | 'typhoon-v2-r1-70b-preview';
+export type TyphoonModel = 'typhoon-v2-8b-instruct' | 'typhoon-v2-70b-instruct' | 'typhoon-v2-r1-70b-preview';
 
 interface ModelSelectorProps {
   selectedModel: TyphoonModel;
@@ -14,24 +15,12 @@ const ModelSelector: React.FC<ModelSelectorProps> = ({
   onModelChange,
   disabled = false
 }) => {
-  const models: { id: TyphoonModel; name: string; description: string }[] = [
-    { 
-      id: 'typhoon-v2-70b-instruct', 
-      name: 'Typhoon 70B', 
-      description: 'Powerful 70B parameter model for complex task'
-    },
-    { 
-      id: 'typhoon-v2-r1-70b-preview', 
-      name: 'Typhoon2 R1 70B', 
-      description: '70B model with strong reasoning capabilities'
-    },
-
-    { 
-      id: 'typhoon-v2-8b-instruct', 
-      name: 'Typhoon 8B', 
-      description: 'Efficient 8B parameter model for faster responses'
-    },
-  ];
+  const models: { id: TyphoonModel; name: string; description: string }[] = (Object.keys(MODEL_PARAMETERS) as TyphoonModel[])
+    .map((id: TyphoonModel) => ({
+      id: id,
+      name: MODEL_PARAMETERS[id].name,
+      description: MODEL_PARAMETERS[id].description
+  }));
 
   return (
     <motion.div
