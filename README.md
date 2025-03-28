@@ -22,7 +22,7 @@ A modern web application that allows users to input a website URL, crawl the ent
 - **Server-Sent Events**: For real-time progress updates
 - **Firecrawl API**: For advanced web crawling and content extraction
 - **LangChain**: For LLM integration
-- **OpenAI**: For AI-powered summarization and chat
+- **Typhoon**: For AI-powered summarization and chat
 
 ## Getting Started
 
@@ -30,7 +30,7 @@ A modern web application that allows users to input a website URL, crawl the ent
 
 - Node.js 18.x or later
 - npm or yarn
-- OpenAI API key
+- OpenTyphoon API key
 - Firecrawl API key
 
 ### Installation
@@ -50,7 +50,7 @@ A modern web application that allows users to input a website URL, crawl the ent
 
 3. Create a `.env.local` file in the root directory and add your API keys:
    ```
-   OPENAI_API_KEY=your_openai_api_key_here
+   TYPHOON_API_KEY=your_typhoon_api_key_here
    FIRECRAWL_API_KEY=your_firecrawl_api_key_here
    MAX_CRAWL_PAGES=10  # Optional: Limit the number of pages to crawl (default: 10)
    ```
@@ -77,7 +77,7 @@ A modern web application that allows users to input a website URL, crawl the ent
 1. **Website Crawling**: When you enter a URL, Firecrawl API crawls the entire website, following links and extracting content from multiple pages.
 2. **Asynchronous Processing**: The crawling process happens asynchronously, with real-time progress updates sent to the UI.
 3. **Content Extraction**: The content is extracted in Markdown format for clean, structured data.
-4. **AI Summarization**: OpenAI processes the extracted content to generate a comprehensive summary.
+4. **AI Summarization**: Typhoon processes the extracted content to generate a comprehensive summary.
 5. **Interactive Chat**: You can ask questions about the website, and the AI will respond based on the crawled content.
 
 ## Deployment
@@ -86,7 +86,7 @@ This application can be easily deployed to Vercel:
 
 1. Push your code to a GitHub repository.
 2. Import the project in Vercel.
-3. Add your environment variables (OPENAI_API_KEY, FIRECRAWL_API_KEY, and optionally MAX_CRAWL_PAGES) in the Vercel dashboard.
+3. Add your environment variables (TYPHOON_API_KEY, FIRECRAWL_API_KEY, and optionally MAX_CRAWL_PAGES) in the Vercel dashboard.
 4. Deploy!
 
 ## License
@@ -97,7 +97,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 - [Next.js](https://nextjs.org/)
 - [Tailwind CSS](https://tailwindcss.com/)
-- [OpenAI](https://openai.com/)
+- [Typhoon](https://opentyphoon.ai/)
 - [Firecrawl](https://firecrawl.dev/)
 - [LangChain](https://js.langchain.com/)
 - [Framer Motion](https://www.framer.com/motion/)
