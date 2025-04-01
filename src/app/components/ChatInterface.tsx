@@ -76,7 +76,7 @@ const renderMessageContent = (content: string) => {
         href={url}
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-flex items-center px-2 py-1 my-1 mx-1 bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 rounded text-xs font-medium hover:bg-indigo-200 dark:hover:bg-indigo-800 transition-colors"
+        className="inline-flex items-center px-2 py-1 my-1 mx-1 bg-indigo-100  text-indigo-800  rounded text-xs font-medium hover:bg-indigo-200 :bg-indigo-800 transition-colors"
       >
         <svg 
           xmlns="http://www.w3.org/2000/svg" 
@@ -320,7 +320,7 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className={`w-full max-w-4xl mx-auto mt-10 bg-white rounded-xl shadow-lg border ${isPartialData ? 'border-yellow-100' : 'border-gray-100'} overflow-hidden dark:bg-gray-800 dark:border-gray-700`}
+      className={`w-full max-w-4xl mx-auto mt-10 bg-white rounded-xl shadow-lg border ${isPartialData ? 'border-yellow-100' : 'border-gray-100'} overflow-hidden  `}
     >
       <div className={`p-3 sm:p-4 ${isPartialData ? 'bg-gradient-to-r from-yellow-500 to-amber-500' : 'bg-gradient-to-r from-indigo-600 to-purple-600'} text-white`}>
         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
@@ -341,7 +341,7 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({
         </p>
       </div>
       
-      <div className="h-80 sm:h-96 overflow-y-auto p-3 sm:p-4 bg-gray-50 dark:bg-gray-900">
+      <div className="h-80 sm:h-96 overflow-y-auto p-3 sm:p-4 bg-gray-50">
         {messages.map((message, index) => (
           <div
             key={message.id}
@@ -351,7 +351,7 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({
               className={`max-w-[85%] sm:max-w-[80%] p-2 sm:p-3 rounded-lg ${
                 message.role === 'user'
                   ? 'bg-indigo-500 text-white rounded-br-none'
-                  : 'bg-white border border-gray-200 text-gray-700 rounded-bl-none dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200'
+                  : 'bg-white border border-gray-200 text-gray-700 rounded-bl-none   '
               }`}
             >
               <div className={`text-sm sm:text-base ${message.role === 'user' ? '' : 'markdown-content'}`}>
@@ -360,10 +360,10 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({
                 ) : (
                   isRegenerating && isLastAssistantMessage(message, index) ? (
                     <div className="flex items-center space-x-2">
-                      <div className="w-2 h-2 rounded-full bg-gray-300 animate-bounce dark:bg-gray-600" style={{ animationDelay: '0ms' }}></div>
-                      <div className="w-2 h-2 rounded-full bg-gray-300 animate-bounce dark:bg-gray-600" style={{ animationDelay: '150ms' }}></div>
-                      <div className="w-2 h-2 rounded-full bg-gray-300 animate-bounce dark:bg-gray-600" style={{ animationDelay: '300ms' }}></div>
-                      <span className="text-xs text-gray-500 dark:text-gray-400 ml-1">Regenerating...</span>
+                      <div className="w-2 h-2 rounded-full bg-gray-300 animate-bounce" style={{ animationDelay: '0ms' }}></div>
+                      <div className="w-2 h-2 rounded-full bg-gray-300 animate-bounce" style={{ animationDelay: '150ms' }}></div>
+                      <div className="w-2 h-2 rounded-full bg-gray-300 animate-bounce" style={{ animationDelay: '300ms' }}></div>
+                      <span className="text-xs text-gray-500  ml-1">Regenerating...</span>
                     </div>
                   ) : (
                     renderMessageContent(message.content)
@@ -378,7 +378,7 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({
                   <button 
                     onClick={handleRegenerate}
                     disabled={isLoading || isRegenerating}
-                    className={`text-xs ${isRegenerating ? 'text-indigo-400 dark:text-indigo-300 animate-pulse' : 'text-gray-400 hover:text-indigo-400 dark:hover:text-indigo-300'} transition-colors`}
+                    className={`text-xs ${isRegenerating ? 'text-indigo-400  animate-pulse' : 'text-gray-400 hover:text-indigo-400 :text-indigo-300'} transition-colors`}
                     title="Replace this response with a new one"
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" className={`h-3.5 w-3.5 ${isRegenerating ? 'animate-spin' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -392,11 +392,11 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({
         ))}
         {isLoading && (
           <div className="flex justify-start mb-4">
-            <div className="bg-white border border-gray-200 p-2 sm:p-3 rounded-lg rounded-bl-none dark:bg-gray-800 dark:border-gray-700">
+            <div className="bg-white border border-gray-200 p-2 sm:p-3 rounded-lg rounded-bl-none ">
               <div className="flex items-center space-x-2">
-                <div className="w-2 h-2 rounded-full bg-gray-300 animate-bounce dark:bg-gray-600" style={{ animationDelay: '0ms' }}></div>
-                <div className="w-2 h-2 rounded-full bg-gray-300 animate-bounce dark:bg-gray-600" style={{ animationDelay: '150ms' }}></div>
-                <div className="w-2 h-2 rounded-full bg-gray-300 animate-bounce dark:bg-gray-600" style={{ animationDelay: '300ms' }}></div>
+                <div className="w-2 h-2 rounded-full bg-gray-300 animate-bounce" style={{ animationDelay: '0ms' }}></div>
+                <div className="w-2 h-2 rounded-full bg-gray-300 animate-bounce" style={{ animationDelay: '150ms' }}></div>
+                <div className="w-2 h-2 rounded-full bg-gray-300 animate-bounce" style={{ animationDelay: '300ms' }}></div>
               </div>
             </div>
           </div>
@@ -404,13 +404,13 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({
         <div ref={messagesEndRef} />
       </div>
       
-      <div className="p-3 sm:p-4 border-t border-gray-200 dark:border-gray-700">
+      <div className="p-3 sm:p-4 border-t border-gray-200">
         {messages.length > 1 && lastUserMessage && (
           <div className="flex justify-end mb-2">
             <button
               onClick={handleRegenerate}
               disabled={isLoading || isRegenerating}
-              className={`flex items-center text-xs ${isRegenerating ? 'text-indigo-600 dark:text-indigo-400' : 'text-gray-500 hover:text-indigo-600 dark:text-gray-400 dark:hover:text-indigo-400'} transition-colors`}
+              className={`flex items-center text-xs ${isRegenerating ? 'text-indigo-600 ' : 'text-gray-500 hover:text-indigo-600  :text-indigo-400'} transition-colors`}
               title="Replace the last assistant response with a new one"
             >
               <svg xmlns="http://www.w3.org/2000/svg" className={`h-3.5 w-3.5 mr-1 ${isRegenerating ? 'animate-spin' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -427,7 +427,7 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({
             value={newMessage}
             onChange={(e) => setNewMessage(e.target.value)}
             placeholder="Type your question here..."
-            className="flex-grow px-3 sm:px-4 py-2 text-sm sm:text-base rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400"
+            className="flex-grow px-3 sm:px-4 py-2 text-sm sm:text-base rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent   "
             disabled={isLoading || isRegenerating}
           />
           <button

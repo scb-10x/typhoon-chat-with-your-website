@@ -6,14 +6,6 @@
   --background-end-rgb: 245, 245, 245;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 237, 237, 237;
-    --background-start-rgb: 10, 10, 10;
-    --background-end-rgb: 20, 20, 20;
-  }
-}
-
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
@@ -35,7 +27,7 @@ body {
 
 /* Stripe-inspired card styles */
 .stripe-card {
-  @apply relative overflow-hidden rounded-xl border border-gray-200 bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-md dark:border-gray-700 dark:bg-gray-800;
+  @apply relative overflow-hidden rounded-xl border border-gray-200 bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-md;
 }
 
 .stripe-card::before {
@@ -185,19 +177,19 @@ body {
 }
 
 .markdown-content a {
-  @apply text-blue-600 dark:text-blue-400 hover:underline;
+  @apply text-blue-600 hover:underline;
 }
 
 .markdown-content blockquote {
-  @apply border-l-4 border-gray-300 dark:border-gray-600 pl-4 italic my-4;
+  @apply border-l-4 border-gray-300 pl-4 italic my-4;
 }
 
 .markdown-content code {
-  @apply bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded text-xs sm:text-sm;
+  @apply bg-gray-100 px-1 py-0.5 rounded text-xs sm:text-sm;
 }
 
 .markdown-content pre {
-  @apply bg-gray-100 dark:bg-gray-800 p-3 rounded my-4 overflow-x-auto;
+  @apply bg-gray-100 p-3 rounded my-4 overflow-x-auto;
 }
 
 .markdown-content pre code {
@@ -209,11 +201,11 @@ body {
 }
 
 .markdown-content th, .markdown-content td {
-  @apply border border-gray-300 dark:border-gray-600 px-2 py-1 text-sm;
+  @apply border border-gray-300 px-2 py-1 text-sm;
 }
 
 .markdown-content th {
-  @apply bg-gray-100 dark:bg-gray-800;
+  @apply bg-gray-100;
 }
 
 /* End of markdown styling */

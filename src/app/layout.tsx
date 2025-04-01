@@ -28,7 +28,7 @@ export default function RootLayout({
       setLang(savedLanguage);
     }
   }, []);
-  
+
   // Listen for custom language change events
   useEffect(() => {
     const handleLanguageChange = (event: CustomEvent) => {
@@ -37,7 +37,7 @@ export default function RootLayout({
         setLang(language);
       }
     };
-    
+
     window.addEventListener(LANGUAGE_CHANGE_EVENT, handleLanguageChange as EventListener);
     return () => window.removeEventListener(LANGUAGE_CHANGE_EVENT, handleLanguageChange as EventListener);
   }, []);
@@ -54,7 +54,7 @@ export default function RootLayout({
         <meta property="og:type" content="website" />
       </head>
       <body
-        className={`${inter.className} ${inter.variable} antialiased min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800`}
+        className={`${inter.className} ${inter.variable} antialiased min-h-screen bg-gradient-to-b from-gray-50 to-gray-100`}
       >
         <LanguageProvider>
           <div className="flex flex-col min-h-screen">

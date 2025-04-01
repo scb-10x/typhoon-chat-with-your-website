@@ -29,7 +29,7 @@ const ModelSelector: React.FC<ModelSelectorProps> = ({
       transition={{ duration: 0.3 }}
       className="w-full max-w-4xl mx-auto mb-4"
     >
-      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1 text-center">
+      <label className="block text-sm font-medium text-gray-700  mb-1 text-center">
         Select Typhoon AI Model
       </label>
       <div className="flex flex-row flex-wrap gap-3 justify-center">
@@ -40,18 +40,18 @@ const ModelSelector: React.FC<ModelSelectorProps> = ({
             className={`
               flex-grow-0 flex-shrink-0 w-[200px] p-1.5 rounded-lg border cursor-pointer transition-all
               ${selectedModel === model.id 
-                ? 'border-indigo-500 bg-indigo-50 dark:bg-indigo-900/30' 
-                : 'border-gray-200 bg-white hover:border-indigo-300 dark:border-gray-700 dark:bg-gray-800 dark:hover:border-indigo-700'}
+                ? 'border-indigo-500 bg-indigo-50 /30' 
+                : 'border-gray-200 bg-white hover:border-indigo-300   :border-indigo-700'}
               ${disabled ? 'opacity-50 cursor-not-allowed' : ''}
             `}
           >
             <div className="flex items-center">
               <div className="flex-shrink-0">
-                <div className={`w-2 h-2 rounded-full ${selectedModel === model.id ? 'bg-indigo-500' : 'bg-gray-300 dark:bg-gray-600'}`}></div>
+                <div className={`w-2 h-2 rounded-full ${selectedModel === model.id ? 'bg-indigo-500' : 'bg-gray-300 '}`}></div>
               </div>
               <div className="ml-2 flex-1 overflow-hidden">
-                <h3 className="text-sm font-medium text-gray-900 dark:text-white truncate">{model.name}</h3>
-                <p className="text-xs text-gray-500 dark:text-gray-400 line-clamp-1">{model.description}</p>
+                <h3 className="text-sm font-medium text-gray-900  truncate">{model.name}</h3>
+                <p className="text-xs text-gray-500  line-clamp-1">{model.description}</p>
               </div>
             </div>
           </div>

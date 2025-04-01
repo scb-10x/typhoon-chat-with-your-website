@@ -31,7 +31,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
       exit={{ opacity: 0, y: 20 }}
       className="w-full max-w-3xl mx-auto -mt-4 mb-8 px-4 sm:px-0"
     >
-      <div className="rounded-lg overflow-hidden bg-white/90 backdrop-blur-md shadow-md dark:bg-gray-800/90 border border-gray-200 dark:border-gray-700">
+      <div className="rounded-lg overflow-hidden bg-white/90 backdrop-blur-md shadow-md /90 border border-gray-200">
         <div className="p-3 sm:p-4">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-2">
             <div className="flex items-center">
@@ -45,25 +45,25 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
                     : "bg-gradient-to-r from-indigo-500 to-purple-500"
                 }`}
               />
-              <h3 className="text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 line-clamp-1">
+              <h3 className="text-xs sm:text-sm font-medium text-gray-700  line-clamp-1">
                 {status}
               </h3>
             </div>
             <div className="flex flex-wrap items-center gap-2 sm:gap-3 mt-1 sm:mt-0">
-              <div className="px-2 py-0.5 sm:py-1 bg-indigo-100 dark:bg-indigo-900 rounded-full text-xs font-medium text-indigo-700 dark:text-indigo-300">
+              <div className="px-2 py-0.5 sm:py-1 bg-indigo-100  rounded-full text-xs font-medium text-indigo-700">
                 <span className="font-bold">{completed}</span>
                 <span className="mx-1">/</span>
                 <span>{total}</span>
                 <span className="ml-1">pages</span>
               </div>
-              <div className="px-2 py-0.5 sm:py-1 bg-purple-100 dark:bg-purple-900 rounded-full text-xs font-medium text-purple-700 dark:text-purple-300">
+              <div className="px-2 py-0.5 sm:py-1 bg-purple-100  rounded-full text-xs font-medium text-purple-700">
                 <span className="font-bold">{safeProgress}%</span>
                 <span className="ml-1">complete</span>
               </div>
             </div>
           </div>
           
-          <div className="h-2 sm:h-3 w-full bg-gray-200 rounded-full overflow-hidden dark:bg-gray-700">
+          <div className="h-2 sm:h-3 w-full bg-gray-200 rounded-full overflow-hidden">
             {isSummarizing ? (
               <motion.div 
                 className="h-full rounded-full bg-gradient-to-r from-purple-500 via-fuchsia-500 to-purple-500 animate-progress-infinite"
@@ -83,10 +83,10 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
           </div>
           
           <div className="flex flex-col xs:flex-row justify-between mt-2 text-xs">
-            <span className="text-gray-500 dark:text-gray-400">
+            <span className="text-gray-500">
               {isSummarizing ? 'Summarizing content' : 'Crawling website'}
             </span>
-            <span className="font-medium text-gray-700 dark:text-gray-300 mt-1 xs:mt-0">
+            <span className="font-medium text-gray-700  mt-1 xs:mt-0">
               {isSummarizing ? 'Preparing AI summary...' : `${completed} pages crawled`}
             </span>
           </div>

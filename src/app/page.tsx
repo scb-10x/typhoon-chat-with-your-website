@@ -57,7 +57,7 @@ export default function Home() {
   const [selectedModel, setSelectedModel] = useState<TyphoonModel>('typhoon-v2-70b-instruct');
   const pollingIntervalRef = useRef<NodeJS.Timeout | null>(null);
   const progressPollingIntervalRef = useRef<NodeJS.Timeout | null>(null);
-  
+
   // Progress state
   const [showProgress, setShowProgress] = useState(false);
   const [progressStatus, setProgressStatus] = useState('Initializing crawl...');
@@ -93,11 +93,11 @@ export default function Home() {
     setProgressStatus(status);
     setProgressCompleted(completed);
     setProgressTotal(total);
-    
+
     // Calculate percentage (0-100)
     const percentage = total > 0 ? Math.floor((completed / total) * 100) : 0;
     setProgressValue(percentage);
-    
+
     // Show progress bar if not already shown
     if (!showProgress) {
       setShowProgress(true);
@@ -111,26 +111,26 @@ export default function Home() {
       if (!response.ok) {
         return;
       }
-      
+
       const data: CrawlProgress = await response.json();
-      
+
       if (data.progress) {
         // Update the progress bar using the direct values from the API
         updateProgress(
-          `Crawling website: ${data.progress}`, 
-          data.completed, 
+          `Crawling website: ${data.progress}`,
+          data.completed,
           data.total
         );
-        
+
         // If we get a crawl ID from the progress updates, start polling for partial content
         if (data.crawlId && !crawlId) {
           setCrawlId(data.crawlId);
-          
+
           // Start polling for partial content every 5 seconds
           if (pollingIntervalRef.current) {
             clearInterval(pollingIntervalRef.current);
           }
-          
+
           pollingIntervalRef.current = setInterval(() => {
             // Only poll if the crawl is not complete and we have a valid crawl ID
             if (!isCrawlComplete && data.crawlId) {
@@ -142,7 +142,7 @@ export default function Home() {
             }
           }, 5000);
         }
-        
+
         // If the progress message indicates completion, set isCrawlComplete
         if (data.progress.includes('Crawl completed') || data.progress.includes('generating summary')) {
           setIsCrawlComplete(true);
@@ -155,10 +155,10 @@ export default function Home() {
             clearInterval(progressPollingIntervalRef.current);
             progressPollingIntervalRef.current = null;
           }
-          
+
           // Update progress to 100%
           updateProgress('Generating summary...', data.total, data.total);
-          
+
           // Hide progress bar after a delay
           setTimeout(() => {
             setShowProgress(false);
@@ -177,9 +177,9 @@ export default function Home() {
       if (!response.ok) {
         throw new Error('Failed to fetch partial content');
       }
-      
+
       const data = await response.json();
-      
+
       // If the crawl is completed, stop polling and update state
       if (data.status === 'completed') {
         setIsCrawlComplete(true);
@@ -191,18 +191,18 @@ export default function Home() {
           clearInterval(progressPollingIntervalRef.current);
           progressPollingIntervalRef.current = null;
         }
-        
+
         // Update progress to indicate completion
         updateProgress(`Crawl completed: ${data.completed} pages crawled. Generating summary...`, data.completed, data.total);
-        
+
         // Hide progress bar after a delay
         setTimeout(() => {
           setShowProgress(false);
         }, 2000);
-        
+
         return;
       }
-      
+
       if (data.pages && data.title) {
         setPartialData({
           url,
@@ -213,7 +213,7 @@ export default function Home() {
           totalPages: data.totalPages,
           summary: data.summary
         });
-        
+
         // Update progress bar with the latest data
         updateProgress('Crawling website...', data.completed, data.total);
       }
@@ -229,7 +229,7 @@ export default function Home() {
     setIsCrawlComplete(false);
     setCrawlId(null);
     setLanguage(selectedLanguage);
-    
+
     // Clean up any existing intervals
     if (pollingIntervalRef.current) {
       clearInterval(pollingIntervalRef.current);
@@ -243,7 +243,7 @@ export default function Home() {
     try {
       // Process the input to handle multiple URLs
       const urls = urlInput.split(',').map(url => url.trim()).filter(url => url.length > 0);
-      
+
       // Show progress bar with initial state
       updateProgress(`Initiating crawl for ${urls[0]}...`);
 
@@ -257,13 +257,13 @@ export default function Home() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ 
+        body: JSON.stringify({
           url: urls[0],
           language: selectedLanguage,
           model: selectedModel
         }),
       });
-      
+
       // Clear the polling intervals
       if (pollingIntervalRef.current) {
         clearInterval(pollingIntervalRef.current);
@@ -273,7 +273,7 @@ export default function Home() {
         clearInterval(progressPollingIntervalRef.current);
         progressPollingIntervalRef.current = null;
       }
-      
+
       // Hide progress bar
       setShowProgress(false);
 
@@ -283,7 +283,7 @@ export default function Home() {
       }
 
       const data = await response.json();
-      
+
       // Update the website data with the new structure
       setWebsiteData({
         url: data.url,
@@ -293,10 +293,10 @@ export default function Home() {
         totalPages: data.totalPages
       });
       setPartialData(null); // Clear partial data once we have the full data
-      
+
       // Show success message
       toast.success('Website analyzed successfully!');
-      
+
       // If there's a notice, show it as an informational toast
       if (data.notice) {
         setTimeout(() => {
@@ -313,12 +313,12 @@ export default function Home() {
       }
     } catch (error) {
       console.error('Error analyzing website:', error);
-      
+
       // Hide progress bar
       setShowProgress(false);
-      
+
       let errorMessage = `Error: ${(error as Error).message}`;
-      
+
       if ((error as Error).message.includes('Firecrawl API key')) {
         errorMessage = 'Error: The Firecrawl API key is not configured. Please contact the administrator.';
       } else if ((error as Error).message.includes('No content extracted')) {
@@ -330,7 +330,7 @@ export default function Home() {
       } else if ((error as Error).message.includes('Crawl failed')) {
         errorMessage = 'Error: The crawl process failed. Please try a different website.';
       }
-      
+
       toast.error(errorMessage);
     } finally {
       setIsLoading(false);
@@ -413,7 +413,7 @@ export default function Home() {
       }
 
       const { summary } = await response.json();
-      
+
       // Update the website data with the new summary
       if (websiteData) {
         setWebsiteData({
@@ -436,21 +436,21 @@ export default function Home() {
   };
 
   return (
-    <div className="bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 relative flex-grow">
+    <div className="bg-gradient-to-b from-gray-50 to-white relative flex-grow">
       <BackgroundDecoration />
       <Toaster position="top-center" />
-      
+
       <div className="container mx-auto px-4 py-8 relative z-10">
         <Header />
-        
+
         <UrlInput onSubmit={handleUrlSubmit} isLoading={isLoading} />
-        
-        <ModelSelector 
+
+        <ModelSelector
           selectedModel={selectedModel}
           onModelChange={setSelectedModel}
           disabled={isLoading}
         />
-        
+
         <div className="pt-4">
           <AnimatePresence>
             {showProgress && (
@@ -464,7 +464,7 @@ export default function Home() {
             )}
           </AnimatePresence>
         </div>
-        
+
         {/* Show either the complete website data or partial data */}
         {(websiteData || partialData) && (
           <WebsiteSummary
@@ -479,7 +479,7 @@ export default function Home() {
             isLoading={isLoading}
           />
         )}
-        
+
         {/* Enable chat with either complete or partial data */}
         {(websiteData || partialData) && (
           <ChatInterface
@@ -491,7 +491,7 @@ export default function Home() {
             model={selectedModel}
           />
         )}
-        
+
       </div>
     </div>
   );
