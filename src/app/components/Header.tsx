@@ -65,6 +65,24 @@ const Header = () => {
         </motion.p>
 
         <motion.div
+          className="mt-2 flex justify-center"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.7, delay: 0.5 }}
+        >
+          <a
+            href="https://opentyphoon.ai"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm font-medium hover:bg-purple-200 transition-colors"
+          >
+            <span className="mr-1">✨</span>
+            Powered by Typhoon AI
+            <span className="ml-1">✨</span>
+          </a>
+        </motion.div>
+
+        <motion.div
           className="mt-6 flex flex-wrap justify-center gap-2 items-center text-sm text-gray-500"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -91,6 +109,30 @@ const Header = () => {
             {t('header.feature3')}
           </span>
         </motion.div>
+
+        {/* Add structured data for SEO */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebApplication",
+              "name": "Chat With Your Website",
+              "description": "Demo showcase of Typhoon AI capabilities - Analyze, summarize, and chat with any website using advanced LLM technology.",
+              "applicationCategory": "Artificial Intelligence",
+              "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD"
+              },
+              "creator": {
+                "@type": "Organization",
+                "name": "Typhoon AI",
+                "url": "https://opentyphoon.ai"
+              }
+            })
+          }}
+        />
 
         {/* Add the language switcher in the header */}
         <div className="absolute top-0 right-0 mt-4 mr-4">

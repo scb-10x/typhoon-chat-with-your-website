@@ -68,11 +68,11 @@ export default function Home() {
   // Update document title when website data changes
   useEffect(() => {
     if (websiteData) {
-      document.title = `${websiteData.title} | Chat With Your Website`;
+      document.title = `${websiteData.title} | Chat With Your Website - Powered by Typhoon AI`;
     } else if (partialData) {
-      document.title = `Analyzing ${partialData.title} | Chat With Your Website`;
+      document.title = `Analyzing ${partialData.title} | Chat With Your Website - Typhoon AI Demo`;
     } else {
-      document.title = "Chat With Your Website";
+      document.title = "Chat With Your Website | Powered by Typhoon AI - Demo Showcase";
     }
   }, [websiteData, partialData]);
 

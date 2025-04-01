@@ -47,11 +47,19 @@ export default function RootLayout({
       <head>
         <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" href="/favicon.ico" />
-        <title>Chat With Your Website</title>
-        <meta name="description" content="Summarize and chat with any website using AI" />
-        <meta property="og:title" content="Chat With Your Website" />
-        <meta property="og:description" content="Summarize and chat with any website using AI" />
+        <title>Chat With Your Website | Powered by Typhoon AI</title>
+        <meta name="description" content="Demo showcase of Typhoon AI capabilities - Analyze, summarize, and chat with any website using advanced LLM technology from Typhoon." />
+        <meta name="keywords" content="Typhoon AI, LLM, website analysis, AI chat, OpenTyphoon, NLP, chatbot, website summarizer" />
+        <meta property="og:title" content="Chat With Your Website | Powered by Typhoon AI" />
+        <meta property="og:description" content="Demo showcase of Typhoon AI capabilities - Analyze, summarize, and chat with any website using advanced LLM technology from Typhoon." />
         <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Typhoon AI Demo" />
+        <meta property="og:url" content="https://opentyphoon.ai" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Chat With Your Website | Powered by Typhoon AI" />
+        <meta name="twitter:description" content="Demo showcase of Typhoon AI capabilities - Analyze, summarize, and chat with any website using advanced LLM technology." />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://opentyphoon.ai" />
       </head>
       <body
         className={`${inter.className} ${inter.variable} antialiased min-h-screen bg-gradient-to-b from-gray-50 to-gray-100`}
