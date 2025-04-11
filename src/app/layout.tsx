@@ -61,7 +61,7 @@ export default function RootLayout({
         <meta name="twitter:description" content="Demo showcase of Typhoon AI capabilities - Analyze, summarize, and chat with any website using advanced LLM technology." />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://opentyphoon.ai" />
-        <Script>
+        <Script id="gtm-script">
           {`
       (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
       new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
