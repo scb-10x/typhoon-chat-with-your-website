@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { LANGUAGE_CHANGE_EVENT } from "./components/LanguageProvider";
 import BottomLanguageSwitcher from "./components/BottomLanguageSwitcher";
 import Footer from "./components/Footer";
+import Script from "next/script";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -60,10 +61,25 @@ export default function RootLayout({
         <meta name="twitter:description" content="Demo showcase of Typhoon AI capabilities - Analyze, summarize, and chat with any website using advanced LLM technology." />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://opentyphoon.ai" />
+        <Script>
+          {`
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-WK925XWL');
+    `}
+        </Script>
+
       </head>
       <body
         className={`${inter.className} ${inter.variable} antialiased min-h-screen bg-gradient-to-b from-gray-50 to-gray-100`}
-      >
+      ><noscript>
+          <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WK925XWL"
+            height={0} width={0} style={{ display: 'none', visibility: 'hidden' }}></iframe>
+        </noscript>
+
+
         <LanguageProvider>
           <div className="flex flex-col min-h-screen">
             {children}
