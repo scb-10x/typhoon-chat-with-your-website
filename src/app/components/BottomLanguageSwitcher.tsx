@@ -82,12 +82,12 @@ const BottomLanguageSwitcher: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
             transition={{ duration: 0.2 }}
-            className="absolute bottom-12 right-0 bg-white dark:bg-gray-800 rounded-lg shadow-xl p-2 min-w-40 border border-gray-200 dark:border-gray-700"
+            className="absolute bottom-12 right-0 bg-white  rounded-lg shadow-xl p-2 min-w-40 border border-gray-200"
             role="menu"
             aria-orientation="vertical"
             aria-labelledby="language-menu-button"
           >
-            <div className="p-1 text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 border-b border-gray-200 dark:border-gray-700">
+            <div className="p-1 text-sm font-medium text-gray-700  mb-2 border-b border-gray-200">
               {t('language.switch')}
             </div>
             <div className="flex flex-col space-y-1">
@@ -95,13 +95,13 @@ const BottomLanguageSwitcher: React.FC = () => {
                 onClick={() => handleLanguageChange('en')}
                 className={`flex items-center px-3 py-2 rounded-md text-left text-sm ${
                   language === 'en'
-                    ? 'bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-300'
-                    : 'hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300'
+                    ? 'bg-indigo-100 /30 text-indigo-600 '
+                    : 'hover:bg-gray-100 :bg-gray-700 text-gray-700 '
                 }`}
                 role="menuitem"
                 aria-current={language === 'en' ? 'page' : undefined}
               >
-                <span className="mr-2 w-6 h-6 flex items-center justify-center rounded-full bg-gray-200 dark:bg-gray-700 text-xs font-bold">
+                <span className="mr-2 w-6 h-6 flex items-center justify-center rounded-full bg-gray-200  text-xs font-bold">
                   EN
                 </span>
                 <span>{t('language.en')}</span>
@@ -115,13 +115,13 @@ const BottomLanguageSwitcher: React.FC = () => {
                 onClick={() => handleLanguageChange('th')}
                 className={`flex items-center px-3 py-2 rounded-md text-left text-sm ${
                   language === 'th'
-                    ? 'bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-300'
-                    : 'hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300'
+                    ? 'bg-indigo-100 /30 text-indigo-600 '
+                    : 'hover:bg-gray-100 :bg-gray-700 text-gray-700 '
                 }`}
                 role="menuitem"
                 aria-current={language === 'th' ? 'page' : undefined}
               >
-                <span className="mr-2 w-6 h-6 flex items-center justify-center rounded-full bg-gray-200 dark:bg-gray-700 text-xs font-bold">
+                <span className="mr-2 w-6 h-6 flex items-center justify-center rounded-full bg-gray-200  text-xs font-bold">
                   TH
                 </span>
                 <span>{t('language.th')}</span>

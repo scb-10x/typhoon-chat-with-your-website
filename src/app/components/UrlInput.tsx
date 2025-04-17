@@ -59,8 +59,8 @@ const UrlInput: React.FC<UrlInputProps> = ({ onSubmit, isLoading }) => {
       transition={{ duration: 0.5, delay: 0.2 }}
       className="w-full max-w-3xl mx-auto mt-8 px-4 sm:px-0"
     >
-      <div className="stripe-card bg-white dark:bg-gray-800 p-4 sm:p-6 mb-6 rounded-xl shadow-lg border border-gray-100 dark:border-gray-700">
-        <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4 flex items-center">
+      <div className="stripe-card bg-white  p-4 sm:p-6 mb-6 rounded-xl shadow-lg border border-gray-100">
+        <h2 className="text-lg font-semibold text-gray-800  mb-4 flex items-center">
           <span className="inline-block w-4 h-4 rounded-full bg-gradient-to-r from-indigo-500 to-purple-600 mr-2"></span>
           {t('urlInput.title')}
         </h2>
@@ -71,7 +71,7 @@ const UrlInput: React.FC<UrlInputProps> = ({ onSubmit, isLoading }) => {
               className={`relative overflow-hidden rounded-lg transition-all duration-300 ${
                 isFocused 
                   ? 'ring-2 ring-purple-500 shadow-md' 
-                  : 'border border-gray-300 dark:border-gray-600'
+                  : 'border border-gray-300 '
               }`}
             >
               {isFocused && (
@@ -95,12 +95,12 @@ const UrlInput: React.FC<UrlInputProps> = ({ onSubmit, isLoading }) => {
                   onFocus={() => setIsFocused(true)}
                   onBlur={() => setIsFocused(false)}
                   placeholder={t('urlInput.placeholder')}
-                  className="w-full px-4 py-3 bg-transparent focus:outline-none dark:text-white text-sm sm:text-base"
+                  className="w-full px-4 py-3 bg-transparent focus:outline-none  text-sm sm:text-base"
                   disabled={isLoading}
                 />
               </div>
             </div>
-            <p className="mt-2 text-xs text-gray-500 dark:text-gray-400 flex items-start sm:items-center">
+            <p className="mt-2 text-xs text-gray-500  flex items-start sm:items-center">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 mr-1 mt-0.5 sm:mt-0 text-indigo-400 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
                 <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
               </svg>
@@ -130,14 +130,14 @@ const UrlInput: React.FC<UrlInputProps> = ({ onSubmit, isLoading }) => {
           
           <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
             <div className="w-full sm:w-auto">
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label className="block text-sm font-medium text-gray-700  mb-1">
                 {t('urlInput.language')}
               </label>
               <div className="relative">
                 <select
                   value={language}
                   onChange={(e) => setLanguage(e.target.value as Language)}
-                  className="block w-full pl-3 pr-10 py-2 text-base border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 dark:bg-gray-700 dark:text-white"
+                  className="block w-full pl-3 pr-10 py-2 text-base border-gray-300  rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 "
                   disabled={isLoading}
                 >
                   <option value="en">{t('language.en')}</option>

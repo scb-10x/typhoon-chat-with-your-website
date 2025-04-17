@@ -1,51 +1,43 @@
-# Chat With Your Website
+# Typhoon Chat With Your Website
 
-A modern web application that allows users to input a website URL, crawl the entire site, summarize its content using AI, and chat with the crawled website data.
+## Introduction
 
-## Features
+[Typhoon Chat With Your Website](https://chat.apps.opentyphoon.ai) is a web application that allows users to have interactive conversations with any website's content. By simply entering a URL, the application crawls the site, processes its content, and enables natural language interactions with the information contained within the website.
 
-- **Full Website Crawling**: Crawl entire websites and extract content from multiple pages.
-- **Real-time Progress Updates**: Get live updates during the crawling process.
-- **Website Analysis**: Get an AI-generated summary of the website content.
-- **Interactive Chat**: Ask questions about the website content and get AI-powered responses.
-- **Modern UI**: Beautiful and responsive user interface with animations.
-- **Real-time Feedback**: Toast notifications for success and error messages.
-- **Advanced Web Crawling**: Uses Firecrawl's API for high-quality content extraction from entire websites.
+This project is part of [Typhoon Application Week](https://apps.opentyphoon.ai), showcasing the capabilities of the [Typhoon platform](https://opentyphoon.ai). Please note that this application is not maintained for production use and is not production-ready. Use at your own risk.
 
-## Technologies Used
+## Highlighted Features + Typhoon Integration
 
-- **Next.js**: React framework for building the application
-- **TypeScript**: For type-safe code
-- **Tailwind CSS**: For styling
-- **Framer Motion**: For animations
-- **Axios**: For HTTP requests
-- **Server-Sent Events**: For real-time progress updates
-- **Firecrawl API**: For advanced web crawling and content extraction
-- **LangChain**: For LLM integration
-- **Typhoon**: For AI-powered summarization and chat
+- **Website Content Understanding**: Typhoon processes crawled website content to build a comprehensive understanding of the site's information, enabling it to answer questions accurately.
 
-## Getting Started
+- **Interactive Q&A**: Users can ask questions in natural language about the website's content, with Typhoon generating contextually relevant responses based on the processed information.
+
+- **AI-Powered Website Summarization**: Typhoon's summarization capabilities analyze the entire website to generate a concise overview of the main topics and content areas.
+
+- **Context-Aware Responses**: Typhoon maintains context throughout the conversation, providing answers that build upon previous questions for a more natural interaction.
+
+- **Multi-page Content Integration**: The application uses Typhoon's ability to process and integrate information from multiple pages into a coherent knowledge base for answering complex questions spanning different sections of the website.
+
+## Getting Started (Local Development)
 
 ### Prerequisites
 
 - Node.js 18.x or later
 - npm or yarn
-- OpenTyphoon API key
+- Typhoon API key
 - Firecrawl API key
 
 ### Installation
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/chat-with-your-website.git
-   cd chat-with-your-website
+   git clone https://github.com/yourusername/typhoon-chat-with-your-website.git
+   cd typhoon-chat-with-your-website
    ```
 
 2. Install dependencies:
    ```bash
    npm install
-   # or
-   yarn install
    ```
 
 3. Create a `.env.local` file in the root directory and add your API keys:
@@ -58,46 +50,18 @@ A modern web application that allows users to input a website URL, crawl the ent
 4. Start the development server:
    ```bash
    npm run dev
-   # or
-   yarn dev
    ```
 
 5. Open [http://localhost:3000](http://localhost:3000) in your browser to see the application.
 
-## Usage
-
-1. Enter a website URL in the input field (including http:// or https://).
-2. Click "Crawl & Analyze Website" to start the crawling process.
-3. Watch the real-time progress updates as the website is crawled.
-4. Once the website is crawled and analyzed, you can see the summary and start chatting with the website content.
-5. Ask questions about the website content in the chat interface.
-
-## How It Works
-
-1. **Website Crawling**: When you enter a URL, Firecrawl API crawls the entire website, following links and extracting content from multiple pages.
-2. **Asynchronous Processing**: The crawling process happens asynchronously, with real-time progress updates sent to the UI.
-3. **Content Extraction**: The content is extracted in Markdown format for clean, structured data.
-4. **AI Summarization**: Typhoon processes the extracted content to generate a comprehensive summary.
-5. **Interactive Chat**: You can ask questions about the website, and the AI will respond based on the crawled content.
-
-## Deployment
-
-This application can be easily deployed to Vercel:
-
-1. Push your code to a GitHub repository.
-2. Import the project in Vercel.
-3. Add your environment variables (TYPHOON_API_KEY, FIRECRAWL_API_KEY, and optionally MAX_CRAWL_PAGES) in the Vercel dashboard.
-4. Deploy!
-
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the [MIT License](https://opensource.org/licenses/MIT) - see the LICENSE file for details.
 
-## Acknowledgements
+## Connect With Us
 
-- [Next.js](https://nextjs.org/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [Typhoon](https://opentyphoon.ai/)
-- [Firecrawl](https://firecrawl.dev/)
-- [LangChain](https://js.langchain.com/)
-- [Framer Motion](https://www.framer.com/motion/)
+- Website: [Typhoon](https://opentyphoon.ai)
+- GitHub: [SCB 10X](https://github.com/scb-10x)
+- Hugging Face: [SCB 10X](https://huggingface.co/scb10x)
+- Discord: [Join our community](https://discord.com/invite/9F6nrFXyNt)
+- X (formerly Twitter): [Typhoon](https://x.com/opentyphoon)
