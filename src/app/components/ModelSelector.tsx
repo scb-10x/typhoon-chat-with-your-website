@@ -1,8 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { MODEL_PARAMETERS } from '../lib/const';
-
-export type TyphoonModel = 'typhoon-v2-8b-instruct' | 'typhoon-v2-70b-instruct' | 'typhoon-v2-r1-70b-preview';
+import { MODEL_PARAMETERS, TyphoonModel } from '../lib/const';
 
 interface ModelSelectorProps {
   selectedModel: TyphoonModel;

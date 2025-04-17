@@ -9,8 +9,9 @@ import ChatInterface from './components/ChatInterface';
 import type { Message } from './components/ChatInterface';
 import ProgressBar from './components/ProgressBar';
 import BackgroundDecoration from './components/BackgroundDecoration';
-import ModelSelector, { TyphoonModel } from './components/ModelSelector';
+import ModelSelector from './components/ModelSelector';
 import { AnimatePresence } from 'framer-motion';
+import { TyphoonModel } from './lib/const';
 
 interface WebsiteData {
   url: string;
@@ -54,7 +55,7 @@ export default function Home() {
   const [isCrawlComplete, setIsCrawlComplete] = useState(false);
   const [crawlId, setCrawlId] = useState<string | null>(null);
   const [language, setLanguage] = useState<Language>('en');
-  const [selectedModel, setSelectedModel] = useState<TyphoonModel>('typhoon-v2-70b-instruct');
+  const [selectedModel, setSelectedModel] = useState<TyphoonModel>('typhoon-v2.1-12b-instruct');
   const pollingIntervalRef = useRef<NodeJS.Timeout | null>(null);
   const progressPollingIntervalRef = useRef<NodeJS.Timeout | null>(null);
   
