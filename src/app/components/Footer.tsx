@@ -41,16 +41,6 @@ const Footer = () => {
               Built with Typhoon AI
             </a>
 
-            {/* More about Typhoon */}
-            <a
-              href="https://opentyphoon.ai/models"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-600 hover:text-gray-900 transition-colors"
-            >
-              Typhoon Models
-            </a>
-
             {/* Terms */}
             <a
               href="https://opentyphoon.ai/tac"

@@ -28,7 +28,7 @@ interface I18nContextType {
 export const translations: TranslationsType = {
   en: {
     // Header
-    'header.title': 'Chat With the Website',
+    'header.title': 'Chat With a Website',
     'header.subtitle': 'Experience Typhoon AI: Enter any website URL, and our AI will summarize and let you interact with its content',
     'header.feature1': 'AI-Powered Crawling',
     'header.feature2': 'Typhoon AI Summaries',
