@@ -2,7 +2,7 @@ import { createOpenAI } from "@ai-sdk/openai";
 import { generateText } from "ai";
 import { ScrapedData } from "./scraper";
 import { Language } from "../components/UrlInput";
-import { TyphoonModel } from "../components/ModelSelector";
+import { TyphoonModel } from "../lib/const";
 import { Message } from "../components/ChatInterface";
 import { MODEL_PARAMETERS } from "./const";
 

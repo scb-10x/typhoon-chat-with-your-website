@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { summarizeWebsite } from '../../lib/llm';
 import { ScrapedData } from '../../lib/scraper';
-import { TyphoonModel } from '../../components/ModelSelector';
+import { TyphoonModel } from '../../lib/const';
 
 export async function POST(request: NextRequest) {
   try {

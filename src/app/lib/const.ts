@@ -1,4 +1,4 @@
-export type TyphoonModel = 'typhoon-v2-8b-instruct' | 'typhoon-v2-70b-instruct' | 'typhoon-v2-r1-70b-preview';
+export type TyphoonModel = 'typhoon-v2-8b-instruct' | 'typhoon-v2.1-12b-instruct' | 'typhoon-v2-70b-instruct' | 'typhoon-v2-r1-70b-preview';
 
 export interface ModelParameters {
   name: string;
@@ -9,11 +9,18 @@ export interface ModelParameters {
 }
 
 export const MODEL_PARAMETERS: Record<TyphoonModel, ModelParameters> = {
+  "typhoon-v2.1-12b-instruct": {
+    maxTokens: 1000,
+    temperature: 0.7,
+    maxContentLength: 12000 * 2,
+    name: 'Typhoon2.1 12B', 
+    description: 'Versatile 12B parameter model for all task'
+  },
   "typhoon-v2-70b-instruct": {
     maxTokens: 1000,
     temperature: 0.7,
     maxContentLength: 12000 * 2,
-    name: 'Typhoon 70B', 
+    name: 'Typhoon2 70B', 
     description: 'Powerful 70B parameter model for complex task'
   },
   "typhoon-v2-r1-70b-preview": {
@@ -27,7 +34,7 @@ export const MODEL_PARAMETERS: Record<TyphoonModel, ModelParameters> = {
     maxTokens: 1000,
     temperature: 0.7,
     maxContentLength: 12000 * 2,
-    name: 'Typhoon 8B',
+    name: 'Typhoon2 8B',
     description: 'Efficient 8B parameter model for faster responses'
   },
 }; 

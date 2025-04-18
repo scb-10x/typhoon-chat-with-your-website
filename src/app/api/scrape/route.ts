@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { scrapeWebsite } from "../../lib/scraper";
 import { summarizeWebsite } from "../../lib/llm";
-import { TyphoonModel } from "../../components/ModelSelector";
+import { TyphoonModel } from "../../lib/const";
 
 const isRootLevelUrl = (url: string) => {
   try {

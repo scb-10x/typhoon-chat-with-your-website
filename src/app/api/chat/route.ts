@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { chatWithWebsite } from '../../lib/llm';
 import { ScrapedData } from '../../lib/scraper';
-import { TyphoonModel } from '../../components/ModelSelector';
 import type { Message } from '../../components/ChatInterface';
+import { TyphoonModel } from '../../lib/const';
 
 export async function POST(request: NextRequest) {
   try {

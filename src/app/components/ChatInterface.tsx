@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Language } from './UrlInput';
 import ReactMarkdown from 'react-markdown';
-import { TyphoonModel } from './ModelSelector';
+import { TyphoonModel } from '../lib/const';
 
 export interface Message {
   id: string;
