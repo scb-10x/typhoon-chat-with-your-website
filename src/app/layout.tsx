@@ -56,9 +56,11 @@ export default function RootLayout({
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="Typhoon AI Demo" />
         <meta property="og:url" content="https://opentyphoon.ai" />
+        <meta property="og:image" content="/og.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Chat With Your Website | Powered by Typhoon AI" />
         <meta name="twitter:description" content="Demo showcase of Typhoon AI capabilities - Analyze, summarize, and chat with any website using advanced LLM technology." />
+        <meta name="twitter:image" content="/og.jpg" />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://opentyphoon.ai" />
         <Script id="gtm-script">
