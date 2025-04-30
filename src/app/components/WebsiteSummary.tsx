@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import ReactMarkdown from 'react-markdown';
-import { Language } from './UrlInput';
+import { LanguageCode } from '../lib/i18n';
 import Image from 'next/image';
 
 interface WebsiteSummaryProps {
@@ -10,7 +10,7 @@ interface WebsiteSummaryProps {
   summary: string;
   isVisible: boolean;
   isPartial?: boolean;
-  language?: Language;
+  language?: LanguageCode;
   sources?: string[];
   onReSummarize?: () => void;
   isLoading?: boolean;
@@ -134,7 +134,14 @@ const WebsiteSummary: React.FC<WebsiteSummaryProps> = ({
                 code: ({ ...props }) => <code className="bg-indigo-50 px-1.5 py-0.5 rounded text-indigo-700 font-mono text-sm" {...props} />,
                 pre: ({ ...props }) => <pre className="bg-gray-50 p-3 rounded-md my-3 overflow-x-auto font-mono text-sm" {...props} />,
                 hr: ({ ...props }) => <hr className="my-4 border-gray-200" {...props} />,
-                img: ({ ...props }) => <Image className="rounded-md my-3 max-w-full h-auto shadow-md" alt="an image" {...props} />,
+                img: ({ src, alt, width, height, ...restProps }) => {
+                  if (typeof src === 'string') {
+                    // Provide placeholder width/height as Markdown doesn't specify dimensions
+                    return <Image className="rounded-md my-3 max-w-full h-auto shadow-md" src={src} alt={alt || 'image from content'} width={parseInt(width?.toString() || '500')} height={parseInt(height?.toString() || '300')} {...restProps} />;
+                  }
+                  // Optionally render a fallback or null if src is invalid
+                  return null;
+                },
                 table: ({ ...props }) => <div className="overflow-x-auto my-4"><table className="min-w-full divide-y divide-gray-200" {...props} /></div>,
                 th: ({ ...props }) => <th className="px-3 py-2 bg-gray-50 text-left text-xs font-medium text-gray-700 uppercase tracking-wider" {...props} />,
                 td: ({ ...props }) => <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-600 border-b border-gray-100" {...props} />,

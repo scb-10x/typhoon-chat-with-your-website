@@ -94,25 +94,6 @@ const Footer = () => {
             </a>
           </div>
         </div>
-
-        {/* SEO-friendly links and text */}
-        <div className="text-xs text-center text-gray-500 mt-6 max-w-2xl mx-auto bg-white/50 p-4 rounded-lg">
-          <p>
-            This demo showcases the capabilities of{' '}
-            <a
-              href="https://opentyphoon.ai"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-purple-500 hover:text-purple-700 transition-colors font-medium"
-            >
-              Typhoon AI
-            </a>
-            , a state-of-the-art language model that enables powerful conversational AI applications.
-          </p>
-          <p className="mt-2">
-            Explore what you can do with Typhoon AI: website analysis, content summarization, conversational AI, and more.
-          </p>
-        </div>
       </div>
     </footer>
   );

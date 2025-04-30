@@ -1,7 +1,7 @@
 import { createOpenAI } from "@ai-sdk/openai";
 import { generateText } from "ai";
 import { ScrapedData } from "./scraper";
-import { Language } from "../components/UrlInput";
+import { LanguageCode } from "../lib/i18n";
 import { TyphoonModel } from "../lib/const";
 import { Message } from "../components/ChatInterface";
 import { MODEL_PARAMETERS } from "./const";
@@ -102,7 +102,7 @@ const maxContextLengthPerPage = (totalPages: number, model: TyphoonModel) => {
  */
 export async function summarizeWebsite(
   data: ScrapedData,
-  language: Language = "en",
+  language: LanguageCode = "en",
   model: TyphoonModel = "typhoon-v2-70b-instruct"
 ): Promise<string> {
   try {
@@ -133,9 +133,8 @@ export async function summarizeWebsite(
         Title: ${page.title}
         ${page.description ? `Description: ${page.description}\n` : ""}
         Content:
-        ${page.content.substring(0, maxContextLengthPerPage(data.totalPages, model))} ${
-            page.content.length > maxContextLengthPerPage(data.totalPages, model) ? "... (content truncated)" : ""
-          }
+        ${page.content.substring(0, maxContextLengthPerPage(data.totalPages, model))} ${page.content.length > maxContextLengthPerPage(data.totalPages, model) ? "... (content truncated)" : ""
+            }
       `
         )
         .join("\n\n")}
@@ -170,7 +169,7 @@ export async function chatWithWebsite(
   data: ScrapedData,
   messages: Message[],
   lastMessage: string,
-  language: Language = "en",
+  language: LanguageCode = "en",
   model: TyphoonModel = "typhoon-v2-70b-instruct"
 ): Promise<string> {
   try {
@@ -210,9 +209,8 @@ export async function chatWithWebsite(
           ชื่อหน้า: ${page.title}
           ${page.description ? `คำอธิบาย: ${page.description}\n` : ""}
           เนื้อหา:
-          ${page.content.substring(0, maxContextLengthPerPage(data.totalPages, model))} ${
-              page.content.length > maxContextLengthPerPage(data.totalPages, model) ? "... (เนื้อหาถูกตัดทอน)" : ""
-            }
+          ${page.content.substring(0, maxContextLengthPerPage(data.totalPages, model))} ${page.content.length > maxContextLengthPerPage(data.totalPages, model) ? "... (เนื้อหาถูกตัดทอน)" : ""
+              }
         `
           )
           .join("\n\n")}
@@ -250,9 +248,8 @@ export async function chatWithWebsite(
           Title: ${page.title}
           ${page.description ? `Description: ${page.description}\n` : ""}
           Content:
-          ${page.content.substring(0, maxContextLengthPerPage(data.totalPages, model))} ${
-              page.content.length > maxContextLengthPerPage(data.totalPages, model) ? "... (content truncated)" : ""
-            }
+          ${page.content.substring(0, maxContextLengthPerPage(data.totalPages, model))} ${page.content.length > maxContextLengthPerPage(data.totalPages, model) ? "... (content truncated)" : ""
+              }
         `
           )
           .join("\n\n")}
