@@ -6,6 +6,7 @@ export type LanguageCode = 'en' | 'th';
 // Define translation keys
 export type TranslationKey =
   | 'header.title' | 'header.subtitle' | 'header.feature1' | 'header.feature2' | 'header.feature3' | 'header.disclaimer'
+  | 'header.github'
   | 'urlInput.title' | 'urlInput.placeholder' | 'urlInput.info' | 'urlInput.error.empty' | 'urlInput.error.invalid'
   | 'urlInput.language' | 'urlInput.button' | 'urlInput.processing'
   | 'language.en' | 'language.th' | 'language.switch'
@@ -34,6 +35,7 @@ export const translations: TranslationsType = {
     'header.feature2': 'Typhoon AI Summaries',
     'header.feature3': 'Interactive LLM Chat',
     'header.disclaimer': 'Disclaimer: This site showcases the capabilities of Typhoon AI. Information and features may contain AI-generated content that might be inaccurate. We are not responsible for generated content. This is a demo of Typhoon\'s use-cases. Visit opentyphoon.ai to learn more about our advanced language models.',
+    'header.github': 'Source Code',
 
     // UrlInput
     'urlInput.title': 'Enter a website to analyze with Typhoon AI',
@@ -64,6 +66,7 @@ export const translations: TranslationsType = {
     'header.feature2': 'สรุปด้วย Typhoon AI',
     'header.feature3': 'แชทโต้ตอบด้วย LLM',
     'header.disclaimer': 'ข้อสงวนสิทธิ์: เว็บไซต์นี้แสดงความสามารถของ Typhoon AI ข้อมูลและฟีเจอร์อาจมีเนื้อหาที่สร้างโดย AI ซึ่งอาจไม่ถูกต้อง เราไม่รับผิดชอบต่อเนื้อหาที่ถูกสร้างขึ้น นี่คือการสาธิตกรณีการใช้งานของ Typhoon เยี่ยมชม opentyphoon.ai เพื่อเรียนรู้เพิ่มเติมเกี่ยวกับโมเดลภาษาขั้นสูงของเรา',
+    'header.github': 'ซอร์สโค้ด',
 
     // UrlInput
     'urlInput.title': 'ป้อนเว็บไซต์ที่ต้องการวิเคราะห์ด้วย Typhoon AI',

@@ -2,8 +2,13 @@
 
 :root {
   --foreground-rgb: 23, 23, 23;
-  --background-start-rgb: 250, 250, 250;
-  --background-end-rgb: 245, 245, 245;
+  --background-start-rgb: 249, 250, 255;
+  --background-end-rgb: 240, 243, 255;
+  --primary-gradient-start: 99, 102, 241;
+  --primary-gradient-mid: 139, 92, 246;
+  --primary-gradient-end: 217, 70, 239;
+  --accent-blue: 59, 130, 246;
+  --accent-purple: 168, 85, 247;
 }
 
 body {
@@ -20,14 +25,16 @@ body {
 /* Grid pattern background */
 .bg-grid-pattern {
   background-image: 
-    linear-gradient(to right, rgba(100, 100, 100, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(100, 100, 100, 0.05) 1px, transparent 1px);
+    linear-gradient(to right, rgba(99, 102, 241, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(99, 102, 241, 0.07) 1px, transparent 1px);
   background-size: 40px 40px;
 }
 
-/* Stripe-inspired card styles */
+/* Enhanced card styles */
 .stripe-card {
-  @apply relative overflow-hidden rounded-xl border border-gray-200 bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-md;
+  @apply relative overflow-hidden rounded-xl border border-gray-200/80 bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-md;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
 }
 
 .stripe-card::before {
@@ -37,7 +44,10 @@ body {
   left: 0;
   width: 100%;
   height: 4px;
-  background: linear-gradient(90deg, #6366f1, #8b5cf6, #d946ef);
+  background: linear-gradient(90deg, 
+    rgb(var(--primary-gradient-start)), 
+    rgb(var(--primary-gradient-mid)), 
+    rgb(var(--primary-gradient-end)));
   opacity: 0;
   transition: opacity 0.3s ease;
 }
@@ -46,9 +56,15 @@ body {
   opacity: 1;
 }
 
-/* Modern button styles */
+/* Improved button styles */
 .btn-primary {
-  @apply relative overflow-hidden rounded-full bg-gradient-to-r from-indigo-600 via-purple-600 to-fuchsia-600 px-6 py-3 text-white shadow-md transition-all duration-300 hover:shadow-lg;
+  @apply relative overflow-hidden rounded-full bg-gradient-to-r from-indigo-600 via-purple-600 to-fuchsia-600 px-6 py-3 text-white font-medium shadow-md transition-all duration-300 hover:shadow-lg;
+  box-shadow: 0 4px 14px rgba(99, 102, 241, 0.25);
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.3);
 }
 
 .btn-primary::after {
@@ -58,7 +74,7 @@ body {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
   transition: left 0.7s ease;
 }
 
@@ -66,7 +82,7 @@ body {
   left: 100%;
 }
 
-/* Animated underline for links */
+/* Enhanced link styling */
 .animated-underline {
   @apply relative inline-block;
 }
@@ -78,7 +94,7 @@ body {
   height: 2px;
   bottom: -2px;
   left: 0;
-  background: linear-gradient(90deg, #6366f1, #a855f7);
+  background: linear-gradient(90deg, rgb(var(--primary-gradient-start)), rgb(var(--primary-gradient-mid)));
   transition: width 0.3s ease;
 }
 
@@ -86,7 +102,7 @@ body {
   width: 100%;
 } 
 
-/* Infinite progress bar animation */
+/* Improved progress bar animation */
 @keyframes progress-infinite {
   0% {
     transform: translateX(-100%);
@@ -104,12 +120,25 @@ body {
 
 .animate-progress-infinite {
   animation: progress-infinite 2s infinite;
-  background: linear-gradient(to right, rgba(99, 102, 241, 0.2), rgba(99, 102, 241, 1), rgba(168, 85, 247, 1), rgba(168, 85, 247, 0.2));
+  background: linear-gradient(to right, 
+    rgba(var(--primary-gradient-start), 0.2), 
+    rgba(var(--primary-gradient-start), 1), 
+    rgba(var(--primary-gradient-mid), 1), 
+    rgba(var(--primary-gradient-mid), 0.2));
   background-size: 200% 100%;
   width: 100% !important;
 }
 
-/* Responsive text truncation */
+/* Glow effects */
+.glow-effect {
+  box-shadow: 0 0 20px rgba(var(--primary-gradient-start), 0.2);
+}
+
+.glow-text {
+  text-shadow: 0 0 8px rgba(var(--primary-gradient-start), 0.3);
+}
+
+/* Improved responsive text truncation */
 .line-clamp-1 {
   display: -webkit-box;
   -webkit-line-clamp: 1;
@@ -139,29 +168,29 @@ body {
   }
 }
 
-/* Markdown styling */
+/* Enhanced markdown styling */
 .markdown-content {
   @apply text-inherit;
 }
 
 .markdown-content h1 {
-  @apply text-xl sm:text-2xl font-bold mb-4 mt-2;
+  @apply text-xl sm:text-2xl font-bold mb-4 mt-2 text-gray-800;
 }
 
 .markdown-content h2 {
-  @apply text-lg sm:text-xl font-bold mb-3 mt-2;
+  @apply text-lg sm:text-xl font-bold mb-3 mt-2 text-gray-800;
 }
 
 .markdown-content h3 {
-  @apply text-base sm:text-lg font-bold mb-2 mt-2;
+  @apply text-base sm:text-lg font-bold mb-2 mt-2 text-gray-800;
 }
 
 .markdown-content h4 {
-  @apply text-sm sm:text-base font-bold mb-2 mt-2;
+  @apply text-sm sm:text-base font-bold mb-2 mt-2 text-gray-800;
 }
 
 .markdown-content p {
-  @apply mb-4 whitespace-pre-line text-sm sm:text-base;
+  @apply mb-4 whitespace-pre-line text-sm sm:text-base text-gray-700;
 }
 
 .markdown-content ul {
@@ -181,7 +210,7 @@ body {
 }
 
 .markdown-content blockquote {
-  @apply border-l-4 border-gray-300 pl-4 italic my-4;
+  @apply border-l-4 border-indigo-300 pl-4 italic my-4 bg-indigo-50/50 py-2 rounded-r;
 }
 
 .markdown-content code {
@@ -189,15 +218,15 @@ body {
 }
 
 .markdown-content pre {
-  @apply bg-gray-100 p-3 rounded my-4 overflow-x-auto;
+  @apply bg-gray-800 text-gray-100 p-3 rounded-lg my-4 overflow-x-auto;
 }
 
 .markdown-content pre code {
-  @apply bg-transparent p-0;
+  @apply bg-transparent p-0 text-gray-100;
 }
 
 .markdown-content table {
-  @apply w-full border-collapse mb-4;
+  @apply w-full border-collapse mb-4 rounded overflow-hidden;
 }
 
 .markdown-content th, .markdown-content td {
@@ -205,7 +234,32 @@ body {
 }
 
 .markdown-content th {
-  @apply bg-gray-100;
+  @apply bg-indigo-50/70 text-gray-800;
 }
 
-/* End of markdown styling */
+/* Chat message animations */
+@keyframes message-appear {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.message-animation {
+  animation: message-appear 0.3s ease-out forwards;
+}
+
+/* Glass morphism effect */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+}
+
+/* End of styling */

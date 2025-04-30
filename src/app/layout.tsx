@@ -76,7 +76,7 @@ export default function RootLayout({
 
       </head>
       <body
-        className={`${inter.className} ${inter.variable} antialiased min-h-screen bg-gradient-to-b from-gray-50 to-gray-100`}
+        className={`${inter.className} ${inter.variable} antialiased min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 overflow-x-hidden`}
       ><noscript>
           <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WK925XWL"
             height={0} width={0} style={{ display: 'none', visibility: 'hidden' }}></iframe>
@@ -84,7 +84,7 @@ export default function RootLayout({
 
 
         <LanguageProvider>
-          <div className="flex flex-col min-h-screen">
+          <div className="flex flex-col min-h-screen relative">
             {children}
             <Footer />
             <BottomLanguageSwitcher />

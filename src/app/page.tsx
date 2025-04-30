@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { Toaster, toast } from 'react-hot-toast';
 import Header from './components/Header';
-import UrlInput, { Language } from './components/UrlInput';
+import UrlInput from './components/UrlInput';
 import WebsiteSummary from './components/WebsiteSummary';
 import ChatInterface from './components/ChatInterface';
 import type { Message } from './components/ChatInterface';
@@ -12,6 +12,7 @@ import BackgroundDecoration from './components/BackgroundDecoration';
 import ModelSelector from './components/ModelSelector';
 import { AnimatePresence } from 'framer-motion';
 import { TyphoonModel } from './lib/const';
+import { useI18n } from './lib/i18n';
 
 interface WebsiteData {
   url: string;
@@ -49,12 +50,12 @@ interface CrawlProgress {
 }
 
 export default function Home() {
+  const { language } = useI18n();
   const [isLoading, setIsLoading] = useState(false);
   const [websiteData, setWebsiteData] = useState<WebsiteData | null>(null);
   const [partialData, setPartialData] = useState<PartialWebsiteData | null>(null);
   const [isCrawlComplete, setIsCrawlComplete] = useState(false);
   const [crawlId, setCrawlId] = useState<string | null>(null);
-  const [language, setLanguage] = useState<Language>('en');
   const [selectedModel, setSelectedModel] = useState<TyphoonModel>('typhoon-v2.1-12b-instruct');
   const pollingIntervalRef = useRef<NodeJS.Timeout | null>(null);
   const progressPollingIntervalRef = useRef<NodeJS.Timeout | null>(null);
@@ -157,13 +158,8 @@ export default function Home() {
             progressPollingIntervalRef.current = null;
           }
 
-          // Update progress to 100%
+          // Update progress to 100% and indicate summary generation
           updateProgress('Generating summary...', data.total, data.total);
-
-          // Hide progress bar after a delay
-          setTimeout(() => {
-            setShowProgress(false);
-          }, 2000);
         }
       }
     } catch (error) {
@@ -193,13 +189,8 @@ export default function Home() {
           progressPollingIntervalRef.current = null;
         }
 
-        // Update progress to indicate completion
+        // Update progress to indicate completion and summary generation
         updateProgress(`Crawl completed: ${data.completed} pages crawled. Generating summary...`, data.completed, data.total);
-
-        // Hide progress bar after a delay
-        setTimeout(() => {
-          setShowProgress(false);
-        }, 2000);
 
         return;
       }
@@ -223,13 +214,12 @@ export default function Home() {
     }
   };
 
-  const handleUrlSubmit = async (urlInput: string, selectedLanguage: Language) => {
+  const handleUrlSubmit = async (urlInput: string) => {
     setIsLoading(true);
     setWebsiteData(null);
     setPartialData(null);
     setIsCrawlComplete(false);
     setCrawlId(null);
-    setLanguage(selectedLanguage);
 
     // Clean up any existing intervals
     if (pollingIntervalRef.current) {
@@ -260,8 +250,8 @@ export default function Home() {
         },
         body: JSON.stringify({
           url: urls[0],
-          language: selectedLanguage,
-          model: selectedModel
+          model: selectedModel,
+          language: language
         }),
       });
 
@@ -274,9 +264,6 @@ export default function Home() {
         clearInterval(progressPollingIntervalRef.current);
         progressPollingIntervalRef.current = null;
       }
-
-      // Hide progress bar
-      setShowProgress(false);
 
       if (!response.ok) {
         const errorData = await response.json();
@@ -315,9 +302,6 @@ export default function Home() {
     } catch (error) {
       console.error('Error analyzing website:', error);
 
-      // Hide progress bar
-      setShowProgress(false);
-
       let errorMessage = `Error: ${(error as Error).message}`;
 
       if ((error as Error).message.includes('Firecrawl API key')) {
@@ -335,6 +319,8 @@ export default function Home() {
       toast.error(errorMessage);
     } finally {
       setIsLoading(false);
+      // Hide progress bar when everything is done (success or fail)
+      setShowProgress(false);
     }
   };
 
@@ -361,8 +347,8 @@ export default function Home() {
             pages: data.pages,
             totalPages: data.totalPages || data.pages.length
           },
-          language,
-          model: selectedModel
+          model: selectedModel,
+          language: language
         }),
       });
 
@@ -403,8 +389,8 @@ export default function Home() {
             pages: data.pages,
             totalPages: data.totalPages || data.pages.length
           },
-          language,
-          model: selectedModel
+          model: selectedModel,
+          language: language
         }),
       });
 
@@ -444,7 +430,7 @@ export default function Home() {
       <div className="container mx-auto px-4 py-8 relative z-10">
         <Header />
 
-        <UrlInput onSubmit={handleUrlSubmit} isLoading={isLoading} />
+        <UrlInput onUrlSubmit={handleUrlSubmit} isLoading={isLoading} />
 
         <ModelSelector
           selectedModel={selectedModel}
@@ -474,10 +460,9 @@ export default function Home() {
             summary={websiteData?.summary || (partialData ? `Crawling in progress: ${partialData.completed}/${partialData.total} pages crawled` : '')}
             isVisible={!!(websiteData || partialData)}
             isPartial={!websiteData && !!partialData}
-            language={language}
+            isLoading={isLoading}
             sources={websiteData?.pages.map(page => page.url) || partialData?.pages.map(page => page.url) || []}
             onReSummarize={handleReSummarize}
-            isLoading={isLoading}
           />
         )}
 
@@ -488,7 +473,6 @@ export default function Home() {
             isVisible={true}
             onSendMessage={handleSendMessage}
             isPartialData={!websiteData && !!partialData}
-            language={language}
             model={selectedModel}
           />
         )}

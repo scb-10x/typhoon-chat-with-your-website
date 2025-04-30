@@ -8,11 +8,11 @@ const Footer = () => {
   const { t } = useI18n();
 
   return (
-    <footer className="w-full py-6 px-4 sm:px-6 lg:px-8 mt-4 border-t border-gray-200">
+    <footer className="w-full py-8 px-4 sm:px-6 lg:px-8 mt-6 border-t border-gray-200 bg-gradient-to-b from-transparent to-gray-50">
       <div className="max-w-7xl mx-auto">
         {/* Disclaimer */}
         <motion.div
-          className="w-full max-w-3xl mx-auto mb-6 text-xs text-center text-gray-500 px-4 py-2"
+          className="w-full max-w-3xl mx-auto mb-8 text-xs text-center text-gray-500 px-5 py-3 bg-white/70 rounded-lg shadow-sm backdrop-blur-sm border border-gray-100"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.7 }}
@@ -20,25 +20,17 @@ const Footer = () => {
           {t('header.disclaimer')}
         </motion.div>
 
-        <div className="flex flex-col md:flex-row justify-between items-center gap-6 mb-4">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-6 mb-6">
           {/* Links and Socials */}
           {/* Typhoon Link */}
-          <div className="flex gap-8 items-center">
+          <div className="flex flex-col sm:flex-row gap-6 sm:gap-8 items-center">
             <a
               href="https://opentyphoon.ai"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-purple-600 hover:text-purple-700 font-medium transition-colors flex items-center"
+              className="text-purple-600 hover:text-purple-700 font-medium transition-colors flex items-center bg-purple-50 px-4 py-2 rounded-full shadow-sm hover:shadow-md"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                className="w-4 h-4 mr-1"
-              >
-                <path d="M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 01-.383-.218 25.18 25.18 0 01-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0112 5.052 5.5 5.5 0 0116.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 01-4.244 3.17 15.247 15.247 0 01-.383.219l-.022.012-.007.004-.003.001a.752.752 0 01-.704 0l-.003-.001z" />
-              </svg>
-              Built with Typhoon AI
+              #BuiltWithTyphoon
             </a>
 
             {/* Terms */}
@@ -46,19 +38,29 @@ const Footer = () => {
               href="https://opentyphoon.ai/tac"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-600 hover:text-gray-900 transition-colors"
+              className="text-gray-600 hover:text-gray-900 transition-colors flex items-center"
             >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-4 w-4 mr-2"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
               Terms and Conditions
             </a>
           </div>
 
           {/* Social Icons */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-5 bg-white/80 px-5 py-3 rounded-full shadow-sm backdrop-blur-sm">
             <a
               href="https://github.com/scb-10x"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-600 hover:text-gray-900 transition-colors"
+              className="text-gray-600 hover:text-gray-900 transition-colors hover:scale-110"
               aria-label="GitHub"
             >
               <FaGithub className="w-5 h-5" />
@@ -67,7 +69,7 @@ const Footer = () => {
               href="https://discord.gg/9F6nrFXyNt"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-600 hover:text-gray-900 transition-colors"
+              className="text-indigo-500 hover:text-indigo-700 transition-colors hover:scale-110"
               aria-label="Discord"
             >
               <FaDiscord className="w-5 h-5" />
@@ -76,7 +78,7 @@ const Footer = () => {
               href="https://huggingface.co/scb10x"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-600 hover:text-gray-900 transition-colors"
+              className="text-orange-500 hover:text-orange-700 transition-colors hover:scale-110"
               aria-label="Hugging Face"
             >
               <SiHuggingface className="w-5 h-5" />
@@ -85,7 +87,7 @@ const Footer = () => {
               href="https://x.com/opentyphoon"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-600 hover:text-gray-900 transition-colors"
+              className="text-gray-800 hover:text-black transition-colors hover:scale-110"
               aria-label="X/Twitter"
             >
               <FaXTwitter className="w-5 h-5" />
@@ -94,20 +96,20 @@ const Footer = () => {
         </div>
 
         {/* SEO-friendly links and text */}
-        <div className="text-xs text-center text-gray-400 mt-4">
+        <div className="text-xs text-center text-gray-500 mt-6 max-w-2xl mx-auto bg-white/50 p-4 rounded-lg">
           <p>
             This demo showcases the capabilities of{' '}
             <a
               href="https://opentyphoon.ai"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-purple-500 hover:text-purple-700 transition-colors"
+              className="text-purple-500 hover:text-purple-700 transition-colors font-medium"
             >
               Typhoon AI
             </a>
             , a state-of-the-art language model that enables powerful conversational AI applications.
           </p>
-          <p className="mt-1">
+          <p className="mt-2">
             Explore what you can do with Typhoon AI: website analysis, content summarization, conversational AI, and more.
           </p>
         </div>
