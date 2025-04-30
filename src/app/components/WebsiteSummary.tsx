@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import ReactMarkdown from 'react-markdown';
 import { Language } from './UrlInput';
+import Image from 'next/image';
 
 interface WebsiteSummaryProps {
   url: string;
@@ -133,7 +134,7 @@ const WebsiteSummary: React.FC<WebsiteSummaryProps> = ({
                 code: ({ ...props }) => <code className="bg-indigo-50 px-1.5 py-0.5 rounded text-indigo-700 font-mono text-sm" {...props} />,
                 pre: ({ ...props }) => <pre className="bg-gray-50 p-3 rounded-md my-3 overflow-x-auto font-mono text-sm" {...props} />,
                 hr: ({ ...props }) => <hr className="my-4 border-gray-200" {...props} />,
-                img: ({ ...props }) => <img className="rounded-md my-3 max-w-full h-auto shadow-md" {...props} />,
+                img: ({ ...props }) => <Image className="rounded-md my-3 max-w-full h-auto shadow-md" alt="an image" {...props} />,
                 table: ({ ...props }) => <div className="overflow-x-auto my-4"><table className="min-w-full divide-y divide-gray-200" {...props} /></div>,
                 th: ({ ...props }) => <th className="px-3 py-2 bg-gray-50 text-left text-xs font-medium text-gray-700 uppercase tracking-wider" {...props} />,
                 td: ({ ...props }) => <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-600 border-b border-gray-100" {...props} />,

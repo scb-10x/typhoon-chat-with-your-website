@@ -14,7 +14,7 @@ const ModelSelector: React.FC<ModelSelectorProps> = ({
   onModelChange,
   disabled = false
 }) => {
-  const { language, t } = useI18n();
+  const { language } = useI18n();
 
   const models: { id: TyphoonModel; name: string; description: string }[] = (Object.keys(MODEL_PARAMETERS) as TyphoonModel[])
     .map((id: TyphoonModel) => ({

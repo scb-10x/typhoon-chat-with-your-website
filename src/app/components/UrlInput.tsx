@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { useI18n, LanguageCode } from '../lib/i18n';
+import { useI18n } from '../lib/i18n';
 import ReportLanguageSelector from './ReportLanguageSelector';
 
 interface UrlInputProps {
