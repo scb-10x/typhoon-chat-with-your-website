@@ -43,22 +43,34 @@ const Header = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
           >
-            <motion.div
-              className="w-14 h-14 flex items-center justify-center sm:mr-4 mb-3 sm:mb-0 glow-effect rounded-full p-1 bg-white/80"
-              whileHover={{ scale: 1.1, rotate: 5 }}
-              transition={{ type: "spring", stiffness: 300 }}
-              id="header-logo-container"
-            >
-              <Image
-                src="/images/logo.svg"
-                alt="Chat With Your Website Logo"
-                width={50}
-                height={50}
-                className="w-full h-full object-contain"
-                priority
-                id="header-logo"
-              />
-            </motion.div>
+            <div className="relative">
+              <motion.div
+                className="w-14 h-14 flex items-center justify-center sm:mr-4 mb-3 sm:mb-0 glow-effect rounded-full p-1 bg-white/80"
+                whileHover={{ scale: 1.1, rotate: 5 }}
+                transition={{ type: "spring", stiffness: 300 }}
+                id="header-logo-container"
+              >
+                <Image
+                  src="/images/logo.svg"
+                  alt="Chat With Your Website Logo"
+                  width={50}
+                  height={50}
+                  className="w-full h-full object-contain"
+                  priority
+                  id="header-logo"
+                />
+              </motion.div>
+              <motion.div
+                className="absolute -top-2 -right-2 bg-gradient-to-r from-pink-500 to-orange-500 text-white text-xs font-bold px-2 py-0.5 rounded-full shadow-md"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.4 }}
+                whileHover={{ scale: 1.1 }}
+                id="demo-flag"
+              >
+                DEMO
+              </motion.div>
+            </div>
 
             <motion.h1
               className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 text-transparent bg-clip-text glow-text"
