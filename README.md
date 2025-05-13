@@ -31,7 +31,7 @@ This project is part of [Typhoon Application Week](https://apps.opentyphoon.ai),
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/typhoon-chat-with-your-website.git
+   git clone https://github.com/scb-10x/typhoon-chat-with-your-website.git
    cd typhoon-chat-with-your-website
    ```
 
