@@ -97,13 +97,13 @@ const maxContextLengthPerPage = (totalPages: number, model: TyphoonModel) => {
  * Summarizes website content using Typhoon API via Vercel AI SDK
  * @param data The scraped website data
  * @param language The language to generate the summary in (default: 'en')
- * @param model The Typhoon model to use (default: 'typhoon-v2-70b-instruct')
+ * @param model The Typhoon model to use (default: 'typhoon-v2.1-12b-instruct')
  * @returns A summary of the website content
  */
 export async function summarizeWebsite(
   data: ScrapedData,
   language: LanguageCode = "en",
-  model: TyphoonModel = "typhoon-v2-70b-instruct"
+  model: TyphoonModel = "typhoon-v2.1-12b-instruct"
 ): Promise<string> {
   try {
     // Get language-specific instructions
@@ -162,7 +162,7 @@ export async function summarizeWebsite(
  * @param messages The array of messages in the conversation
  * @param lastMessage The last user message/question
  * @param language The language to generate the response in (default: 'en')
- * @param model The Typhoon model to use (default: 'typhoon-v2-70b-instruct')
+ * @param model The Typhoon model to use (default: 'typhoon-v2.1-12b-instruct')
  * @returns The AI's response based on the website content
  */
 export async function chatWithWebsite(
@@ -170,7 +170,7 @@ export async function chatWithWebsite(
   messages: Message[],
   lastMessage: string,
   language: LanguageCode = "en",
-  model: TyphoonModel = "typhoon-v2-70b-instruct"
+  model: TyphoonModel = "typhoon-v2.1-12b-instruct"
 ): Promise<string> {
   try {
     // Prepare the prompt for chat based on language
