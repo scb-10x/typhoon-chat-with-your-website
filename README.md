@@ -1,5 +1,9 @@
 # Typhoon Chat With Your Website
 
+**This repository is archived and released as-is. If you’re interested in this work, please contact us.**
+
+---
+
 ## Introduction
 
 [Typhoon Chat With Your Website](https://chat.apps.opentyphoon.ai) is a web application that allows users to have interactive conversations with any website's content. By simply entering a URL, the application crawls the site, processes its content, and enables natural language interactions with the information contained within the website.
